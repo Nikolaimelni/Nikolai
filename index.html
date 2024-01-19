@@ -6,15 +6,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Front-End Developer Nikolai Melnichenko</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.svg" />
-        <!-- Custom Google font-->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
     </head>
@@ -193,24 +189,22 @@
                 </div>
             </section>
             <div class="container section px-5 mt-5" id="resume">
-                <div class="text-center mb-5">
+                <div class="text-center mb-5 hidden">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Resume</span></h1>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
                         <!-- Experience Section-->
-                            <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4 hidden">
                                 <h2 class="text-primary fw-bolder mb-0">Experience</h2>
-                                <!-- Download resume button-->
-                                <!-- Note: Set the link href target to a PDF file within your project-->
-                                <a class="btn btn-primary px-4 py-3" href="/assets/CV_Nikolai_Melnichenko.pdf" download>
-                                    <div class="d-inline-block bi bi-download me-2"></div>
+                                <a class="btn btn-primary px-4 py-3 btn-download" href="/assets/CV_Nikolai_Melnichenko.pdf" download>
+                                    <div class="d-inline-block me-2"></div>
                                     Download Resume
                                 </a>
                             </div>
                             <!-- Experience Card 1-->
                             <div class="card shadow border-0 rounded-4 mb-5">
-                                <div class="card-body p-5">
+                                <div class="card-body p-5 hidden">
                                     <div class="row align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
                                             <div class="bg-light p-4 rounded-4">
@@ -220,7 +214,10 @@
                                                 <div class="small text-muted">London, UK</div>
                                             </div>
                                         </div>
-                                        <ul class="col-lg-8 list-align">
+                                        <ul class="col-lg-8 list-align responsive-list">
+                                            <li class="toggle-info">
+                                                Tap to open description
+                                            </li>
                                             <li>
                                                 Spearheaded a large-scale financial project, successfully managing and optimizing web applications for <strong>over 60,000</strong>
                                                 companies using <strong>React, TypeScript, and Next.JS;</strong>
@@ -244,7 +241,7 @@
                                 </div>
                             </div>
                             <!-- Experience Card 2-->
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card shadow border-0 rounded-4 mb-5 hidden">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
@@ -255,7 +252,10 @@
                                                 <div class="small text-muted">Remote</div>
                                             </div>
                                         </div>
-                                        <ul class="col-lg-8 list-align">
+                                        <ul class="col-lg-8 list-align responsive-list">
+                                            <li class="toggle-info">
+                                                Tap to open description
+                                            </li>
                                             <li>
                                                 Developed web applications with <strong>React, JavaScript, Typescript, HTML, and SCSS</strong>;
                                             </li>
@@ -274,7 +274,7 @@
                                 </div>
                             </div>
                             <!-- Experience Card 3-->
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card shadow border-0 rounded-4 mb-5 hidden">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
@@ -285,7 +285,10 @@
                                                 <div class="small text-muted">Remote</div>
                                             </div>
                                         </div>
-                                        <ul class="col-lg-8 list-align">
+                                        <ul class="col-lg-8 list-align responsive-list">
+                                            <li class="toggle-info">
+                                                Tap to open description
+                                            </li>
                                             <li>
                                                 Developed the functionality of an internet store using the <strong>Django </strong>framework;
                                             </li>
@@ -307,7 +310,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card shadow border-0 rounded-4 mb-5 hidden">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
@@ -317,33 +320,39 @@
                                                 <div class="small text-muted">Different oil companies</div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-8">Carried out maintenance of mechanical and technological equipment of a reservoir park with diesel fuel delivery and
-                                            acceptance point. Provided a full cycle of work on the design, construction, and operation of more than 30 temporary fuel depots
-                                        </div>                                    
+                                        <ul class="col-lg-8 list-align responsive-list">
+                                            <li class="toggle-info">
+                                                Tap to open description
+                                            </li>
+                                            <li>
+                                                Carried out maintenance of mechanical and technological equipment of a reservoir park with diesel fuel delivery and
+                                                acceptance point. Provided a full cycle of work on the design, construction, and operation of more than 30 temporary fuel depots.
+                                            </li>        
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         <!-- Education Section-->
                             <!-- Education Card 1-->
-                            <h2 class="text-secondary fw-bolder mb-4">Certificates</h2>
-                            <div class="container">
-                                <div class="row row-pb">
-                                    <div class="col-md-6">
+                            <h2 class="text-secondary fw-bolder mb-4 hidden">Certificates</h2>
+                            <div class="container hidden">
+                                <div class="row">
+                                    <div class="col-md-6 pb-1">
                                         <img 
                                           src="assets/certificates/Certificate_Frontend.jpg"
-                                          class="img-hover-zoom" 
+                                          class="img-fluid img-hover-zoom row-certificates" 
                                           alt="certificate Front-End">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 pb-1">
                                         <img 
                                             src="assets/certificates/EF_SET_Certificate.jpg"
-                                            class="img-fluid img-hover-zoom" 
+                                            class="img-fluid img-hover-zoom row-certificates" 
                                             alt="certificate English"
                                         >
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 pb-1">
                                         <img 
                                             src="assets/certificates/certificate_Python_professional.jpg" 
                                             class="img-fluid img-hover-zoom" 
@@ -360,8 +369,8 @@
                                 </div>
                             </div>
                             <!-- Education Card 2-->
-                            <h2 class="text-secondary text-secondary-pt fw-bolder mb-4">Education</h2>
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <h2 class="text-secondary text-secondary-pt fw-bolder mb-4 hidden">Education</h2>
+                            <div class="card shadow border-0 rounded-4 mb-5 hidden">
                                 <div class="card-body p-5">
                                     <div class="row-education align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
@@ -373,7 +382,7 @@
                                                 </div>
                                                 <div class=" education-bottom">
                                                     <div class="fst-italic">
-                                                        <div class="small text-muted">Master's</div>
+                                                        <div class="small text-muted text-degree">Master's</div>
                                                         <div class="small text-muted">in Petroleum field</div>
                                                     </div>
                                                     <img src="assets/univercity/tiu.png" alt="Tyumen Industrial University Logo" class="university-logo">
@@ -389,7 +398,7 @@
                                                 </div>
                                                 <div class="education-bottom">
                                                     <div class="fst-italic">
-                                                        <div class="small text-muted">Bachelor's</div>
+                                                        <div class="small text-muted text-degree">Bachelor's</div>
                                                         <div class="small text-muted">in Petroleum field</div>
                                                     </div>
                                                     <img src="assets/univercity/mining.png" alt="National Mining University Logo" class="university-logo">
@@ -406,7 +415,7 @@
                             <div class="card shadow border-0 rounded-4 mb-5">
                                 <div class="card-body p-5">
                                     <!-- Stack list-->
-                                    <div class="mb-5">
+                                    <div class="mb-5 hidden">
                                         <div class="d-flex align-items-center mb-4">
                                             <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
                                             <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Stack</span></h3>
@@ -423,7 +432,7 @@
                                         </div>
                                     </div>
                                     <!-- Professional skills list-->
-                                    <div class="mb-0">
+                                    <div class="mb-0 hidden">
                                         <div class="d-flex align-items-center mb-4">
                                             <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-tools"></i></div>
                                             <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Professional Skills</span></h3>
@@ -444,7 +453,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container px-5 py-5" id="call-to-action">
+            <div class="container px-5 py-5 hidden" id="call-to-action">
                 <section class="py-5 bg-gradient-primary-to-secondary text-white">
                     <div class="container px-5 my-5">
                         <div class="text-center">
@@ -454,82 +463,132 @@
                     </div>
                 </section>
             </div>
-            <div class="container section mt-5" id="projects">
+            <div class="container section mt-5 hidden" id="projects">
                 <div class="container px-5 mb-5">
                     <div class="text-center mb-5">
                         <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <!-- Project Card 1-->
-                            <div class="card shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center project-container">
-                                        <div class="p-5 project-item project-text">
-                                            <h2 class="fw-bolder">Numfin Global</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                            <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <!-- Project Card 1-->
+                                    <div class="carousel-item active">
+                                        <div class="card shadow rounded-4 border-0 mb-5">
+                                            <div class="card-body p-0 d-flex align-items-center project-container">
+                                                <div class="p-3 project-item project-text">
+                                                    <h2 class="fw-bolder">
+                                                        <a 
+                                                          href="https://numfin.com/" 
+                                                          class='text-decoration-none text-secondary' 
+                                                          target="_blank" 
+                                                          rel="noopener noreferrer"
+                                                        >
+                                                            Numfin Global
+                                                        </a>
+                                                    </h2>
+                                                    <p>
+                                                        A platform for financial analytics, consolidating extensive data on over 60,000 stocks from 70 exchanges to enable investors to make well-informed decisions.
+                                                        <br>
+                                                        Worked with Front-End (Typescript, React, Next.js, MobX) and Back-End (Go, SQL, API). Implemented a payment system and doubled the website's content.
+                                                    </p>
+                                                </div>
+                                                <div class="project-item p-3">
+                                                    <img class="img-fluid project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="project-item p-3">
-                                            <a href="https://numfin.com/" target="_blank" rel="noopener noreferrer">
-                                                <img class="img-fluid img-hover-zoom project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
-                                            </a>
+                                    </div>
+                                    <!-- Project Card 2-->
+                                    <div class="carousel-item">
+                                        <div class="card shadow rounded-4 border-0 mb-5">
+                                            <div class="card-body p-0 d-flex align-items-center project-container">
+                                                <div class="p-3 project-item project-text">
+                                                    <h2 class="fw-bolder">
+                                                        <a 
+                                                          href="https://numfin.com/" 
+                                                          class='text-decoration-none text-secondary' 
+                                                          target="_blank" 
+                                                          rel="noopener noreferrer"
+                                                        >
+                                                            Nqewqeql
+                                                        </a>
+                                                    </h2>
+                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                                                </div>
+                                                <div class="project-item p-3">
+                                                    <img class="img-fluid project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Project Card 3-->
+                                    <div class="carousel-item">
+                                        <div class="card shadow rounded-4 border-0 mb-5">
+                                            <div class="card-body p-0 d-flex align-items-center project-container">
+                                                <div class="p-3 project-item project-text">
+                                                    <h2 class="fw-bolder">
+                                                        <a 
+                                                          href="https://numfin.com/" 
+                                                          class='text-decoration-none text-secondary' 
+                                                          target="_blank" 
+                                                          rel="noopener noreferrer"
+                                                        >
+                                                            qwer
+                                                        </a>
+                                                    </h2>
+                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                                                </div>
+                                                <div class="project-item p-3">
+                                                    <img class="img-fluid project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Project Card 4-->
+                                    <div class="carousel-item">
+                                        <div class="card shadow rounded-4 border-0 mb-5">
+                                            <div class="card-body p-0 d-flex align-items-center project-container">
+                                                <div class="p-3 project-item project-text">
+                                                    <h2 class="fw-bolder">
+                                                        <a 
+                                                          href="https://numfin.com/" 
+                                                          class='text-decoration-none text-secondary' 
+                                                          target="_blank" 
+                                                          rel="noopener noreferrer"
+                                                        >
+                                                            123
+                                                        </a>
+                                                    </h2>
+                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                                                </div>
+                                                <div class="project-item p-3">
+                                                    <img class="img-fluid project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Project Card 2-->
-                            <div class="card shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center project-container">
-                                        <div class="p-5 project-item project-text">
-                                            <h2 class="fw-bolder">Numfin Global</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
-                                        </div>
-                                        <div class="project-item p-3">
-                                            <a href="https://numfin.com/" target="_blank" rel="noopener noreferrer">
-                                                <img class="img-fluid img-hover-zoom project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Project Card 3-->
-                            <div class="card shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center project-container">
-                                        <div class="p-5 project-item project-text">
-                                            <h2 class="fw-bolder">Numfin Global</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
-                                        </div>
-                                        <div class="project-item p-3">
-                                            <a href="https://numfin.com/" target="_blank" rel="noopener noreferrer">
-                                                <img class="img-fluid img-hover-zoom project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Project Card 4-->
-                            <div class="card shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center project-container">
-                                        <div class="p-5 project-item project-text">
-                                            <h2 class="fw-bolder">Numfin Global</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
-                                        </div>
-                                        <div class="project-item p-3">
-                                            <a href="https://numfin.com/" target="_blank" rel="noopener noreferrer">
-                                                <img class="img-fluid img-hover-zoom project-img" src="assets/projects/numfin.jpg" alt="project Numfin" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="carousel-control-prev" href="#projectCarousel" role="button" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#projectCarousel" role="button" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </a>
+                                  <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                  </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container px-5" id="contact">
+            <div class="container px-5 hidden" id="contact">
                 <section class="py-5">
                     <div class="container px-5">
                         <!-- Contact form-->
@@ -603,30 +662,11 @@
         </main>
         <!-- Footer-->
         <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; Your Website 2023</div></div>
-                    <div class="col-auto">
-                        <a class="small" href="#!">Privacy</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Terms</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contact</a>
-                    </div>
-                </div>
+            <div class="container px-5 disclaimer">
+                Montenegro, 2023
             </div>
         </footer>
-                <!-- Подключение jQuery -->
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        
-                <!-- Подключение Popper.js (необходимо для некоторых компонентов Bootstrap) -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                
-                <!-- Подключение Bootstrap JS -->
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
     </body>
 </html>
