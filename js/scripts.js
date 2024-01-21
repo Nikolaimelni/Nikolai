@@ -56,3 +56,65 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.addEventListener('scroll', checkVisibility);
 });
+
+let currentImageIndex = 0;
+const images = document.querySelectorAll('.img-hover-zoom');
+
+document.querySelectorAll('.img-hover-zoom').forEach((item, index) => {
+    item.addEventListener('click', event => {
+        currentImageIndex = index;
+        updateModalImage();
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    });
+});
+
+document.getElementById('nextButton').addEventListener('click', nextImage);
+document.getElementById('prevButton').addEventListener('click', previousImage);
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+        nextImage();
+    } else if (event.key === 'ArrowLeft') {
+        previousImage();
+    }
+});
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateModalImage();
+}
+
+function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateModalImage();
+}
+
+function updateModalImage() {
+    const newImageSrc = images[currentImageIndex].getAttribute('src');
+    document.getElementById('modalImage').setAttribute('src', newImageSrc);
+}
+
+let touchstartX = 0;
+let touchendX = 0;
+
+const slider = document.getElementById('imageModal');
+
+slider.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+});
+
+slider.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+});
+
+function handleGesture() {
+    if (touchendX < touchstartX) {
+        nextImage();
+    }
+    
+    if (touchendX > touchstartX) {
+        previousImage();
+    }
+}
