@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var toggleButtons = document.querySelectorAll('.toggle-info');
-    var responsiveLists = document.querySelectorAll('.responsive-list');
+    const toggleButtons = document.querySelectorAll('.toggle-info');
+    const responsiveLists = document.querySelectorAll('.responsive-list');
 
     toggleButtons.forEach(function(toggleButton) {
         toggleButton.addEventListener('click', function() {
-            var responsiveList = this.parentNode;
-            var isListOpen = responsiveList.classList.contains('open');
+            const responsiveList = this.parentNode;
+            const isListOpen = responsiveList.classList.contains('open');
             responsiveList.classList.toggle('open');
             
             this.textContent = isListOpen ? 'Tap to open description' : 'Tap to hide description';
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkSize() {
         responsiveLists.forEach(function(responsiveList) {
-            var toggleButton = responsiveList.querySelector('.toggle-info');
+            const toggleButton = responsiveList.querySelector('.toggle-info');
             if (window.innerWidth > 768) {
                 responsiveList.classList.add('open');
             } else {
@@ -29,9 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Получаем элементы бургер-меню и ссылок
-    var navbarCollapse = document.querySelector(".navbar-collapse");
-    var navLinks = document.querySelectorAll(".nav-link");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    const navLinks = document.querySelectorAll(".nav-link");
 
     navLinks.forEach(function(link) {
         link.addEventListener("click", function() {
@@ -41,11 +40,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    var elementsToAnimate = document.querySelectorAll('.hidden');
+    const elementsToAnimate = document.querySelectorAll('.hidden');
 
     function checkVisibility() {
         elementsToAnimate.forEach(function(element) {
-            var rect = element.getBoundingClientRect();
+            const rect = element.getBoundingClientRect();
             if (rect.top < window.innerHeight) {
                 element.classList.add('visible');
             }
@@ -64,7 +63,7 @@ document.querySelectorAll('.img-hover-zoom').forEach((item, index) => {
     item.addEventListener('click', event => {
         currentImageIndex = index;
         updateModalImage();
-        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
         modal.show();
     });
 });
@@ -118,3 +117,72 @@ function handleGesture() {
         previousImage();
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("fs-frm");
+    const emailInput = document.getElementById("email-address");
+    const successMessage = document.getElementById("submitSuccessMessage");
+    const errorMessage = document.getElementById("submitErrorMessage");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        resetValidationStates();
+
+        let isValid = true;
+
+        if (!form.checkValidity()) {
+            showValidationErrors();
+            isValid = false;
+        }
+
+        if (!validateEmail(emailInput.value)) {
+            emailInput.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://formspree.io/f/xyyrkzpq", true);
+        xhr.setRequestHeader("Accept", "application/json");
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                successMessage.classList.remove("d-none");
+                errorMessage.classList.add("d-none");
+            } else {
+                errorMessage.textContent = "There was an error submitting the form. Please try again.";
+                errorMessage.classList.remove("d-none");
+            }
+        };
+
+        xhr.onerror = () => {
+            errorMessage.textContent = "There was a network error. Please check your internet connection and try again.";
+            errorMessage.classList.remove("d-none");
+        };
+
+        xhr.send(formData);
+    });
+
+    const resetValidationStates = () => {
+        form.querySelectorAll(".form-control").forEach(input => {
+            input.classList.remove("is-invalid");
+        });
+    };
+
+    const showValidationErrors = () => {
+        form.querySelectorAll(":invalid").forEach(input => {
+            input.classList.add("is-invalid");
+        });
+    };
+
+    const validateEmail = (email) => {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(email.toLowerCase());
+    }
+});
+
