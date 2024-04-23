@@ -722,7 +722,7 @@ progress {
 @media (max-width: 768px) {
   .project-container {
     flex-direction: column;
-    height: 550px;
+    height: 590px;
   }
   .project-item {
     width: auto;
