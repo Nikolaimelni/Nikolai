@@ -44,8 +44,8 @@
     font-size: var(--step-0);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    /* Точки у фото вылезают за правый край и на 375px давали 23px бокового
-       скролла. clip вместо hidden, чтобы не ломать position: sticky. */
+    /* The dots beside the photo overhang the right edge and used to add 23px of
+       sideways scroll at 375px. clip rather than hidden so sticky still works. */
     overflow-x: clip;
   }
 
@@ -93,7 +93,7 @@
   }
 }
 
-/* Последний слой в каскаде, поэтому перебивает анимации компонентов без !important. */
+/* Last layer in the cascade, so it beats component animations without !important. */
 @layer motion {
   @media (prefers-reduced-motion: reduce) {
     *,

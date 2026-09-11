@@ -1,9 +1,9 @@
 :root {
   color-scheme: light dark;
 
-  /* Зелёный у Николая был #00B945. Белый текст на нём даёт 2.62:1, это мимо AA,
-     поэтому рабочий зелёный тут глубже. Исходный остался как --vivid и живёт
-     только в подложке под фото, где текста нет. */
+  /* The old green was #00B945. White text on it lands at 2.62:1, well under AA,
+     so the working green here is deeper. The original survives as --vivid and is
+     only used behind the photo, where no text sits on it. */
   --green: light-dark(#046a38, #39d98a);
   --blue: light-dark(#1a1eb2, #8e92ff);
   --vivid: #00b945;
