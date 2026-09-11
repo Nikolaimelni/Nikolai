@@ -11,17 +11,20 @@
   --paper: light-dark(#fbfcfb, #0e1311);
   --surface: light-dark(#ffffff, #151c19);
   --ink: light-dark(#101714, #e9efeb);
+  /* Long-form body copy. Everything used to be --muted, which flattened the
+     page: when all the text is grey, none of it is emphasised. */
+  --ink-soft: light-dark(#2e3a35, #c2ccc7);
   --muted: light-dark(#5a6660, #97a39e);
   --rule: light-dark(#e2e7e4, #232b28);
 
   --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
-  --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
+  --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
   --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
   --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
-  --step-4: clamp(2.6rem, 1.9rem + 3.4vw, 4.6rem);
+  --step-4: clamp(2.1rem, 1.55rem + 3.2vw, 4.6rem);
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 62ch;
