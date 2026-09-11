@@ -5,7 +5,9 @@ const home = '/Nikolai/';
 async function fillForm(page: import('@playwright/test').Page) {
   await page.getByLabel('Your name').fill('Test Person');
   await page.getByLabel('Email').fill('test@example.com');
-  await page.getByLabel('What do you need built?').fill('A long enough message to pass validation.');
+  await page
+    .getByLabel('What do you need built?')
+    .fill('A long enough message to pass validation.');
 }
 
 test('a sent message reports success and clears the form', async ({ page }) => {

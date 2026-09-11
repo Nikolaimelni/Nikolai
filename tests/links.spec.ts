@@ -22,7 +22,7 @@ test('@network every outbound link still resolves', async ({ page, request }) =>
       if (response.status() >= 400 && response.status() !== 999) {
         dead.push(`${response.status()} ${url}`);
       }
-    } catch (error) {
+    } catch {
       dead.push(`unreachable ${url}`);
     }
   }
