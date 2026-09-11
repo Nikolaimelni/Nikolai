@@ -44,6 +44,7 @@ export const profile = {
       company: 'BrainRocket',
       place: 'Lisbon, Portugal',
       kind: 'On-site',
+      earlier: false,
       points: [
         'Built product features on the shared UI component library and the SCSS/BEM structure behind it, which every application on the platform uses.',
         'Shipped country-specific builds into seven regulated markets across Europe, North America, Latin America and Africa, including Sweden, Denmark and New Jersey. Layout, content and compliance elements differ by jurisdiction, so each country gets its own project rather than a shared site.',
@@ -60,11 +61,11 @@ export const profile = {
       company: 'REnumber Lab',
       place: 'Remote',
       kind: 'Consulting',
+      earlier: false,
       points: [
         'Led a complete redesign of a marketplace platform on React, Next.js and TypeScript, from front-end architecture through delivery.',
         'Developed the admin panel and the client-facing front-end for a business SMS messaging product.',
-        'Integrated front-end features with Node.js, Express and .NET back ends, refining REST contracts with the back-end teams.',
-        'Took requirements and demos directly with client stakeholders, to fixed deadlines.',
+        'Integrated front-end features with Node.js, Express and .NET back ends, and took requirements and demos directly with client stakeholders.',
       ],
     },
     {
@@ -74,10 +75,10 @@ export const profile = {
       company: 'NumFin Global',
       place: 'Remote',
       kind: 'Full-time',
+      earlier: false,
       points: [
         'Built and optimized React, Next.js and TypeScript applications for a financial analytics product, with Redux and MobX holding application state.',
-        'Built data-heavy dashboards and interactive charts for financial metrics.',
-        'Implemented a payment system and advertising integrations.',
+        'Built data-heavy dashboards and interactive charts for financial metrics, and shipped the payment system and the advertising integrations.',
         'Worked on SEO and Core Web Vitals across the Next.js application, on rendering, metadata and page speed.',
       ],
     },
@@ -88,9 +89,9 @@ export const profile = {
       company: 'Self-employed',
       place: 'Remote',
       kind: 'Freelance',
+      earlier: false,
       points: [
-        'Delivered web projects end to end, from Figma layouts to deployed responsive sites, with React, TypeScript, SCSS and BEM.',
-        'Completed an intensive front-end program in five months instead of the standard nine.',
+        'Delivered web projects end to end, from Figma layouts to deployed responsive sites, with React, TypeScript, SCSS and BEM. Completed an intensive front-end program in five months instead of the standard nine.',
       ],
     },
     {
@@ -100,6 +101,7 @@ export const profile = {
       company: 'Self-employed',
       place: 'Remote',
       kind: 'Freelance',
+      earlier: true,
       points: [
         'Built e-commerce functionality with Python and Django, and containerized a Django REST API with Docker.',
       ],
@@ -111,9 +113,9 @@ export const profile = {
       company: 'Oil and gas companies',
       place: 'Russia',
       kind: 'Before the switch',
+      earlier: true,
       points: [
-        'Delivered the full design, construction and operation cycle for fuel depot sites, coordinating contractors, budgets and regulatory approvals.',
-        'Six years in a regulated industry is where the habit of reading requirements twice came from. Moved to software in 2021 and to full-time front-end in 2022.',
+        'Delivered the full design, construction and operation cycle for fuel depot sites, coordinating contractors, budgets and regulatory approvals. Six years in a regulated industry is where the habit of reading requirements twice came from.',
       ],
     },
   ],
