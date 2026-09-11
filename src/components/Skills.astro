@@ -13,7 +13,11 @@ const logos = { tiu, mining };
       profile.skills.map((group) => (
         <div class="group">
           <h3>{group.label}</h3>
-          <p>{group.items.join(', ')}</p>
+          <ul class="items">
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
         </div>
       ))
     }
@@ -75,11 +79,20 @@ const logos = { tiu, mining };
     gap: 0.4rem;
   }
 
-  /* Plain prose, not a grid of boxes. A box per tool implies they are equal. */
-  .skills .group p {
-    font-size: var(--step-1);
-    line-height: 1.5;
-    max-width: 44ch;
+  /* A wrapped run rather than a grid of boxes: a box per tool would imply they
+     all carry the same weight. One long comma sentence was worse to scan. */
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.8rem;
+    max-width: 46ch;
+    color: var(--ink-soft);
+  }
+
+  .items li:not(:last-child)::after {
+    content: '·';
+    margin-left: 0.8rem;
+    color: var(--muted);
   }
 
   .school {
