@@ -1,0 +1,88 @@
+---
+import { profile } from '../data/profile';
+import { withBase } from '../lib/url';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(withBase('/og.png'), Astro.site).href;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.role,
+  description,
+  url: canonical,
+  image: ogImage,
+  email: `mailto:${profile.links.email}`,
+  knowsAbout: [...profile.skills.daily, ...profile.skills.used],
+  sameAs: [profile.links.github, profile.links.linkedin, profile.links.telegram],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#fbfcfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(person)} is:inline />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot />
+    <style>
+      .skip {
+        position: absolute;
+        left: var(--gutter);
+        top: 0;
+        z-index: 10;
+        padding: 0.6rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 0 0 6px 6px;
+        font-weight: 600;
+        transform: translateY(-110%);
+        transition: transform 120ms ease;
+
+        &:focus-visible {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
+</html>

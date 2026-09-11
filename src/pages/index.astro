@@ -1,17 +1,58 @@
 ---
+import Contact from '../components/Contact.astro';
+import Experience from '../components/Experience.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Nav from '../components/Nav.astro';
+import Proof from '../components/Proof.astro';
+import Section from '../components/Section.astro';
+import Skills from '../components/Skills.astro';
+import Work from '../components/Work.astro';
+import { profile } from '../data/profile';
+import Base from '../layouts/Base.astro';
 
+const title = `${profile.name} — ${profile.role}`;
+const description = profile.subhead;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title={title} description={description}>
+  <div class="shell">
+    <Nav />
+    <Hero />
+    <Proof />
+
+    <Section
+      id="work"
+      title="Selected work"
+      lead="Three products people actually use. For each one: what it is, what I did, and what changed after."
+    >
+      <Work />
+    </Section>
+
+    <Section id="experience" title="Experience">
+      <Experience />
+    </Section>
+
+    <Section id="skills" title="Stack and schooling">
+      <Skills />
+    </Section>
+
+    <Section
+      id="contact"
+      title="Let's talk"
+      lead="Hiring, a contract, or a second opinion on a front-end that has got away from you."
+    >
+      <Contact />
+    </Section>
+
+    <Footer />
+  </div>
+</Base>
+
+<style>
+  .shell {
+    max-width: var(--column);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+</style>

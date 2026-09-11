@@ -1,0 +1,51 @@
+---
+import { profile } from '../data/profile';
+---
+
+<nav>
+  <a class="brand" href="#main">{profile.name}</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1rem;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid transparent;
+    font-size: var(--step--1);
+  }
+
+  .brand {
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    font-weight: 600;
+  }
+
+  /* Three short links fit at 320px, so there is nothing to hide behind a burger. */
+  ul a {
+    text-decoration: none;
+    color: var(--muted);
+
+    &:hover {
+      color: var(--ink);
+    }
+  }
+</style>

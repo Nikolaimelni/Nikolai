@@ -12,8 +12,9 @@ export const profile = {
   available: true,
   availability: 'Open to full-time and contract work, remote across Europe',
 
-  // The one line that has to do the selling. Keep a number in it.
-  headline: 'I build front-ends for fintech and marketplaces',
+  // The line that has to do the selling. Second half renders in the accent gradient.
+  headline: 'I build front-ends',
+  headlineAccent: 'for fintech and marketplaces',
   subhead:
     'Six years as a petroleum engineer, four building for the web. Most of that on products where the data is the product: 60,000 companies, 70 exchanges, payments that have to clear.',
 

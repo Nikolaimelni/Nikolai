@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import mining from '../assets/education/mining.webp';
+import tiu from '../assets/education/tiu.webp';
+import { profile } from '../data/profile';
+
+const logos = { tiu, mining };
+---
+
+<div class="grid">
+  <div class="skills">
+    <div class="group">
+      <h3>Every day</h3>
+      <p>{profile.skills.daily.join(', ')}</p>
+    </div>
+    <div class="group">
+      <h3>Shipped with, not living in</h3>
+      <p>{profile.skills.used.join(', ')}</p>
+    </div>
+  </div>
+
+  <div class="education">
+    <h3>Education</h3>
+    {
+      profile.education.map((school) => (
+        <div class="school">
+          <Image src={logos[school.logo]} alt="" widths={[80]} loading="lazy" decoding="async" />
+          <div>
+            <p class="name">{school.school}</p>
+            <p class="meta">
+              {school.degree}, {school.field}
+            </p>
+            <p class="meta">
+              {school.from}&ndash;{school.to} · {school.place}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+
+    @media (width >= 55rem) {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    }
+  }
+
+  .skills,
+  .education {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  h3 {
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--green);
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Plain prose, not a grid of boxes. A box per tool implies they are equal. */
+  .group p {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    max-width: 40ch;
+  }
+
+  .school {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .school :global(img) {
+    width: 2.5rem;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .name {
+    font-weight: 600;
+  }
+
+  .meta {
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+</style>

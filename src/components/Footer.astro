@@ -1,0 +1,30 @@
+---
+import { profile } from '../data/profile';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>
+    <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+  </p>
+  <p class="meta">
+    {profile.base}, {profile.timezone} · {year} · <a href="https://github.com/Nikolaimelni/Nikolai" target="_blank" rel="noopener noreferrer">source</a>
+  </p>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: var(--step--1);
+  }
+
+  .meta {
+    color: var(--muted);
+  }
+</style>
