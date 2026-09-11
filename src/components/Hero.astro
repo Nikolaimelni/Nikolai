@@ -133,16 +133,27 @@ import { withBase } from '../lib/url';
       background-size: 0.62rem 0.62rem;
     }
 
+    /* The dots hang outside the frame, which is the detail worth keeping from
+       the old site. On a narrow phone that put them off-screen and gave the
+       page 23px of sideways drag, so below 48rem they tuck inside instead. */
     &::before {
       color: var(--blue);
-      right: -1.6rem;
       top: 2rem;
+      right: 0.9rem;
+
+      @media (width >= 48rem) {
+        right: -1.6rem;
+      }
     }
 
     &::after {
       color: var(--vivid);
-      left: -1.6rem;
       bottom: 2rem;
+      left: 0.9rem;
+
+      @media (width >= 48rem) {
+        left: -1.6rem;
+      }
     }
   }
 

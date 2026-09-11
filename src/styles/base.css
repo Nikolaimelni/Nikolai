@@ -37,6 +37,12 @@
 }
 
 @layer base {
+  /* Has to sit on html, not body. Overflow set on body propagates to the
+     viewport and the clip stops applying, which leaves the page draggable. */
+  html {
+    overflow-x: clip;
+  }
+
   body {
     background: var(--paper);
     color: var(--ink);
@@ -44,9 +50,6 @@
     font-size: var(--step-0);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    /* The dots beside the photo overhang the right edge and used to add 23px of
-       sideways scroll at 375px. clip rather than hidden so sticky still works. */
-    overflow-x: clip;
   }
 
   h1,
