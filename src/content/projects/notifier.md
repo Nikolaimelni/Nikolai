@@ -4,7 +4,7 @@ order: 2
 summary: >-
   SMS campaigns for small businesses: upload a list, send, read the report.
   The real problem was making it usable without a manual.
-role: Front-end and admin panel
+role: Front-end and admin panel, at REnumber Lab
 stack: ['Next.js', TypeScript, MobX, 'Ant Design']
 outcome: >-
   Customer site and admin share one codebase, so a change to campaign logic

@@ -2,13 +2,14 @@
 title: Numfin Global
 order: 1
 summary: >-
-  Financial analytics for people who would otherwise keep ten tabs open:
-  60,000 companies across 70 exchanges, in one place.
-role: Front-end, plus part of the Go backend
-stack: [TypeScript, React, 'Next.js', MobX, Go, SQL]
+  Stock market analytics for people who would otherwise keep ten tabs open.
+  Data-heavy dashboards and interactive charts over a lot of moving numbers.
+role: Front-end across the product
+stack: [TypeScript, React, 'Next.js', Redux, MobX, SQL]
 outcome: >-
-  Retention up 20%. Doubled the content on the site by adding endpoints and
-  wiring in external APIs. Shipped the payment system and the ad slots.
+  Shipped the payment system and the advertising integrations. Widened content
+  coverage through external REST APIs, and took on the SEO and Core Web Vitals
+  work across the Next.js side.
 cover: ../../assets/projects/numfin.webp
 coverAlt: Numfin Global home page
 url: https://numfin.com/

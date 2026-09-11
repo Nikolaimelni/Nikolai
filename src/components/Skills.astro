@@ -9,14 +9,14 @@ const logos = { tiu, mining };
 
 <div class="grid">
   <div class="skills">
-    <div class="group">
-      <h3>Every day</h3>
-      <p>{profile.skills.daily.join(', ')}</p>
-    </div>
-    <div class="group">
-      <h3>Shipped with, not living in</h3>
-      <p>{profile.skills.used.join(', ')}</p>
-    </div>
+    {
+      profile.skills.map((group) => (
+        <div class="group">
+          <h3>{group.label}</h3>
+          <p>{group.items.join(', ')}</p>
+        </div>
+      ))
+    }
   </div>
 
   <div class="education">
@@ -24,7 +24,7 @@ const logos = { tiu, mining };
     {
       profile.education.map((school) => (
         <div class="school">
-          <Image src={logos[school.logo]} alt="" widths={[80]} loading="lazy" decoding="async" />
+          <Image src={logos[school.logo]} alt="" width={80} loading="lazy" decoding="async" />
           <div>
             <p class="name">{school.school}</p>
             <p class="meta">
@@ -37,6 +37,11 @@ const logos = { tiu, mining };
         </div>
       ))
     }
+
+    <div class="group">
+      <h3>Languages</h3>
+      <p class="meta">{profile.languages}</p>
+    </div>
   </div>
 </div>
 
@@ -67,14 +72,14 @@ const logos = { tiu, mining };
   .group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   /* Plain prose, not a grid of boxes. A box per tool implies they are equal. */
-  .group p {
+  .skills .group p {
     font-size: var(--step-1);
     line-height: 1.5;
-    max-width: 40ch;
+    max-width: 44ch;
   }
 
   .school {

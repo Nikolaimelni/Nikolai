@@ -20,12 +20,11 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" 
 
   <text x="104" y="214" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="800" fill="#101714">Nikolai Melnichenko</text>
   <text x="104" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="600" fill="#046a38">Front-End Developer</text>
-  <text x="104" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#5a6660">React, Next.js and TypeScript for fintech</text>
-  <text x="104" y="456" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#5a6660">and marketplaces.</text>
+  <text x="104" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#5a6660">React and TypeScript for products that ship</text>
+  <text x="104" y="456" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#5a6660">in seven regulated markets.</text>
 
-  <text x="104" y="556" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#101714">60,000 companies</text>
-  <text x="430" y="556" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#101714">70 exchanges</text>
-  <text x="702" y="556" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#101714">+20% retention</text>
+  <text x="104" y="556" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#101714">Lisbon, Portugal</text>
+  <text x="420" y="556" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#101714">EU work authorization</text>
 </svg>`;
 
 const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 512 512">

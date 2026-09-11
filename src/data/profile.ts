@@ -1,28 +1,31 @@
 /**
- * Everything about Nikolai that changes over time lives here, so updating the
- * CV never means touching a component.
+ * Everything that changes over time lives here, so updating the CV never means
+ * touching a component. Kept in step with the master CV, which is the source of truth.
+ *
+ * Two rules carried over from it:
+ *  - No client or brand names from the current employer. Impersonal only.
+ *  - No internal package, service or repository names.
  */
 
 export const profile = {
   name: 'Nikolai Melnichenko',
   role: 'Front-End Developer',
-  base: 'Montenegro',
-  timezone: 'CET',
-  // Flip to false when you stop taking work and the hero badge goes quiet.
+  base: 'Lisbon, Portugal',
+  authorization: 'EU work authorization (Portuguese residence permit)',
   available: true,
-  availability: 'Open to full-time and contract work, remote across Europe',
+  availability: 'Open to on-site in Lisbon, hybrid or fully remote',
 
   // The line that has to do the selling. Second half renders in the accent gradient.
   headline: 'I build front‑ends',
-  headlineAccent: 'for fintech and marketplaces',
+  headlineAccent: 'that ship in seven regulated markets',
   subhead:
-    'Six years as a petroleum engineer, four building for the web. Most of that on products where the data is the product: 60,000 companies, 70 exchanges, payments that have to clear.',
+    'Five years in front-end, the last two on-site in Lisbon at a thousand-person product company. I build on the shared component library, set up the payment widget for each brand and work on the country-specific builds. Release Captain for my stream.',
 
   proof: [
-    { figure: '60,000', label: 'companies on the platform I shipped' },
-    { figure: '+20%', label: 'user retention after stability work' },
-    { figure: '70', label: 'exchanges feeding one analytics view' },
-    { figure: '4 yrs', label: 'in production React and Next.js' },
+    { figure: '7', label: 'regulated markets, from Sweden to New Jersey' },
+    { figure: '5+', label: 'years in front-end, React since 2022' },
+    { figure: '2', label: 'frameworks in production: React 19 and Angular 20' },
+    { figure: '1,000+', label: 'person product company, on-site in Lisbon' },
   ],
 
   links: {
@@ -35,71 +38,131 @@ export const profile = {
 
   experience: [
     {
-      from: '2023',
+      from: 'Jun 2024',
       to: 'Present',
+      title: 'Front-End Developer',
+      company: 'BrainRocket',
+      place: 'Lisbon, Portugal',
+      kind: 'On-site',
+      points: [
+        'Built product features on the shared UI component library and the SCSS/BEM structure behind it, which every application on the platform uses.',
+        'Shipped country-specific builds into seven regulated markets across Europe, North America, Latin America and Africa, including Sweden, Denmark and New Jersey. Layout, content and compliance elements differ by jurisdiction, so each country gets its own project rather than a shared site.',
+        'Set up a third-party payment widget for each brand: configuration, loading it on the page and handling its events.',
+        'Spent over a year on the Angular 20 side of the platform with RxJS, NgRx and SSR over Express, inside an Nx monorepo.',
+        'Expanded automated test coverage with Vitest, React Testing Library and MSW, and cut page load times with code splitting, lazy loading and bundle analysis.',
+        'Release Captain for my stream, with full ownership of the release cycle. Wrote the release, branching and code-style conventions the stream works to.',
+      ],
+    },
+    {
+      from: 'Nov 2023',
+      to: 'Jun 2024',
       title: 'Front-End Developer',
       company: 'REnumber Lab',
-      place: 'Paris, France',
-      // Both this and Numfin say Present. Say which is which or the reader guesses.
-      kind: 'Contract',
+      place: 'Remote',
+      kind: 'Consulting',
       points: [
-        'Rebuilt a marketplace platform end to end on Next.js and TypeScript, cutting page load times and lifting engagement.',
-        'Built the admin panel and front-end for a business SMS product.',
-        'Extended existing applications over Express.js and .NET, which brought server response times and bug reports down.',
+        'Led a complete redesign of a marketplace platform on React, Next.js and TypeScript, from front-end architecture through delivery.',
+        'Developed the admin panel and the client-facing front-end for a business SMS messaging product.',
+        'Integrated front-end features with Node.js, Express and .NET back ends, refining REST contracts with the back-end teams.',
+        'Took requirements and demos directly with client stakeholders, to fixed deadlines.',
       ],
     },
     {
-      from: '2022',
-      to: 'Present',
+      from: 'Oct 2022',
+      to: 'Nov 2023',
       title: 'Front-End Developer',
-      company: 'Numfin Global',
-      place: 'London, UK',
+      company: 'NumFin Global',
+      place: 'Remote',
       kind: 'Full-time',
       points: [
-        'Ran the front-end of a financial analytics platform covering 60,000 companies across 70 exchanges, on React, TypeScript and Next.js.',
-        'Stability and performance work that took user retention up 20%.',
-        'Shipped the payment system and the ad slots, which is where the project started making money.',
-        'Doubled the content on the site by integrating APIs and adding endpoints.',
-        'Fixed a long tail of bugs that were holding back SEO, and the traffic followed.',
+        'Built and optimized React, Next.js and TypeScript applications for a financial analytics product, with Redux and MobX holding application state.',
+        'Built data-heavy dashboards and interactive charts for financial metrics.',
+        'Implemented a payment system and advertising integrations.',
+        'Worked on SEO and Core Web Vitals across the Next.js application, on rendering, metadata and page speed.',
       ],
     },
     {
-      from: '2022',
-      to: '2022',
+      from: 'Jun 2022',
+      to: 'Oct 2022',
       title: 'Front-End Developer',
-      company: 'Freelance and traineeship',
+      company: 'Self-employed',
       place: 'Remote',
-      kind: '',
+      kind: 'Freelance',
       points: [
-        'Ten projects from Figma layout to deployed site, on HTML, SCSS and JavaScript.',
-        'Ten React applications with TypeScript, hooks, routing and API integration.',
-        'Finished a nine-month course in five.',
+        'Delivered web projects end to end, from Figma layouts to deployed responsive sites, with React, TypeScript, SCSS and BEM.',
+        'Completed an intensive front-end program in five months instead of the standard nine.',
       ],
     },
     {
-      from: '2021',
-      to: '2022',
+      from: 'Jun 2021',
+      to: 'Jun 2022',
       title: 'Python Developer',
-      company: 'Freelance and traineeship',
+      company: 'Self-employed',
       place: 'Remote',
-      kind: '',
+      kind: 'Freelance',
       points: [
-        'Built the working parts of an online store on Django.',
-        'Wrote services for handling API requests, and the database structures behind them.',
-        'Containerised a Django REST API with Docker.',
+        'Built e-commerce functionality with Python and Django, and containerized a Django REST API with Docker.',
       ],
     },
     {
       from: '2016',
       to: '2022',
       title: 'Petroleum Engineer',
-      company: 'Various oil companies',
-      place: '',
+      company: 'Oil and gas companies',
+      place: 'Russia',
       kind: 'Before the switch',
       points: [
-        'Design, construction and operation of more than 30 temporary fuel depots, plus maintenance of a reservoir park with a diesel delivery and acceptance point.',
-        'Six years of work where a mistake costs real money is the reason I read requirements twice before writing anything.',
+        'Delivered the full design, construction and operation cycle for fuel depot sites, coordinating contractors, budgets and regulatory approvals.',
+        'Six years in a regulated industry is where the habit of reading requirements twice came from. Moved to software in 2021 and to full-time front-end in 2022.',
       ],
+    },
+  ],
+
+  skills: [
+    {
+      label: 'Every day',
+      items: [
+        'React 19',
+        'TypeScript',
+        'JavaScript',
+        'Next.js',
+        'SCSS / BEM',
+        'TanStack Query',
+        'Vitest',
+        'Git',
+      ],
+    },
+    {
+      label: 'Also shipped with',
+      items: [
+        'Angular 20',
+        'RxJS',
+        'NgRx',
+        'Redux Toolkit',
+        'MobX',
+        'Emotion',
+        'react-aria',
+        'Custom Elements',
+        'Shadow DOM',
+        'Nx',
+        'Vite',
+        'Webpack',
+        'Storybook',
+        'MSW',
+        'Node.js',
+        'Express',
+        'socket.io',
+        'Zod',
+        'Docker',
+      ],
+    },
+    {
+      label: 'From personal projects',
+      items: ['Playwright', 'Cypress', 'Astro'],
+    },
+    {
+      label: 'Daily, with the output checked',
+      items: ['Claude Code', 'GitHub Copilot'],
     },
   ],
 
@@ -107,25 +170,22 @@ export const profile = {
     {
       from: '2016',
       to: '2019',
-      school: 'Tyumen Industrial University',
+      school: 'Tyumen State Oil and Gas University',
       place: 'Tyumen, Russia',
-      degree: "Master's",
-      field: 'Petroleum engineering',
+      degree: "Master's in Engineering",
+      field: 'Oil and gas industry',
       logo: 'tiu',
     },
     {
       from: '2012',
       to: '2016',
-      school: 'National Mining University',
+      school: 'National Mineral Resources University',
       place: 'Saint Petersburg, Russia',
-      degree: "Bachelor's",
-      field: 'Petroleum engineering',
+      degree: "Bachelor's in Engineering",
+      field: 'Oil and gas industry',
       logo: 'mining',
     },
   ],
 
-  skills: {
-    daily: ['TypeScript', 'React', 'Next.js', 'JavaScript', 'HTML', 'SCSS', 'Git'],
-    used: ['MobX', 'Redux', 'Go', 'Python', 'Django', 'SQL', 'Figma'],
-  },
+  languages: 'English: professional working. Russian: native. Portuguese: A2, learning.',
 } as const;

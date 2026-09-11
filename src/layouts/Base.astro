@@ -23,7 +23,8 @@ const person = {
   url: canonical,
   image: ogImage,
   email: `mailto:${profile.links.email}`,
-  knowsAbout: [...profile.skills.daily, ...profile.skills.used],
+  address: { '@type': 'PostalAddress', addressLocality: 'Lisbon', addressCountry: 'PT' },
+  knowsAbout: profile.skills.flatMap((group) => group.items),
   sameAs: [profile.links.github, profile.links.linkedin, profile.links.telegram],
 };
 ---
