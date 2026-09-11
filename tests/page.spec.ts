@@ -14,7 +14,7 @@ test('the page renders its sections', async ({ page }) => {
 
   const work = page.locator('#work');
   await expect(work.getByRole('heading', { name: 'Numfin Global' })).toBeVisible();
-  await expect(work.locator('.project')).toHaveCount(3);
+  await expect(work.locator('.project')).toHaveCount(2);
 });
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {

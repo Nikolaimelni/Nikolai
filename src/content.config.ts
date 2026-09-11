@@ -14,9 +14,7 @@ const projects = defineCollection({
       outcome: z.string(),
       cover: image(),
       coverAlt: z.string(),
-      url: z.string().url().optional(),
-      // The project's domain is gone. Set this so the card renders without a dead link.
-      offline: z.boolean().default(false),
+      url: z.string().url(),
     }),
 });
 

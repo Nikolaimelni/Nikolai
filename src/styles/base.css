@@ -17,7 +17,8 @@
     margin: 0;
   }
 
-  ul[class] {
+  ul,
+  ol {
     list-style: none;
     padding: 0;
   }
