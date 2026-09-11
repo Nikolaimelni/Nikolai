@@ -83,9 +83,12 @@ const logos = { tiu, mining };
     gap: 1rem;
   }
 
+  /* The two logos have very different aspect ratios, so pin the box and let
+     object-fit sort out the rest. */
   .school :global(img) {
     width: 2.5rem;
-    height: auto;
+    height: 2.5rem;
+    object-fit: contain;
     flex-shrink: 0;
   }
 
