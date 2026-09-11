@@ -29,6 +29,9 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test
+      # Playwright builds through its webServer, but the deploy artifact should
+      # not depend on a test runner having run first.
+      - run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
