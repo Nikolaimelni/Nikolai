@@ -1,9 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-const home = '/Nikolai/';
-
 test('the page renders its sections', async ({ page }) => {
-  await page.goto(home);
+  await page.goto('');
 
   // The old site had four h1 elements, which is why this is pinned.
   await expect(page.locator('h1')).toHaveCount(1);
@@ -19,7 +17,7 @@ test('the page renders its sections', async ({ page }) => {
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
-  await page.goto(home);
+  await page.goto('');
 
   // The dots beside the portrait overhang on purpose and are clipped, so
   // scrollWidth is not the measure. What matters is whether a thumb can drag
@@ -35,7 +33,7 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
 test('content survives without javascript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto(home);
+  await page.goto('');
 
   // Half the old page sat at opacity 0 waiting on a scroll handler.
   await expect(page.locator('#work')).toBeVisible();
@@ -44,7 +42,7 @@ test('content survives without javascript', async ({ browser }) => {
 });
 
 test('the 404 page works', async ({ page }) => {
-  const response = await page.goto('/Nikolai/no-such-page');
+  const response = await page.goto('no-such-page');
   expect(response?.status()).toBe(404);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('not here');
 });

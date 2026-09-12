@@ -21,8 +21,12 @@ import { withBase } from '../lib/url';
     <p class="sub">{profile.subhead}</p>
 
     <div class="actions">
-      <a class="btn primary" href={`mailto:${profile.links.email}`}>Start a conversation</a>
-      <a class="btn" href={withBase(profile.links.cv)} download>Download CV</a>
+      {/* Was a mailto:, which does nothing visible on a desktop with no mail
+          client configured. The form below always works. */}
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href={withBase(profile.links.cv)} download>
+        Download CV <span class="meta">PDF, 56 KB</span>
+      </a>
     </div>
   </div>
 
@@ -97,6 +101,10 @@ import { withBase } from '../lib/url';
   }
 
   .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
     padding: 0.85rem 1.4rem;
     border: 1px solid var(--rule);
     border-radius: 8px;
@@ -107,6 +115,12 @@ import { withBase } from '../lib/url';
     &:hover {
       border-color: var(--ink);
     }
+  }
+
+  .btn .meta {
+    font-weight: 400;
+    font-size: var(--step--1);
+    color: var(--muted);
   }
 
   .primary {

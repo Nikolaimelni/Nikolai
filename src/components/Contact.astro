@@ -18,9 +18,13 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     </div>
 
     <div class="field">
-      <label for="message">What do you need built?</label>
+      <label for="message">What is the role, or what needs building?</label>
       <textarea id="message" name="message" rows="5" minlength="10" required></textarea>
     </div>
+
+    {/* Formspree drops anything that fills this in. Public page plus a free
+        tier means the first bot would otherwise eat the monthly quota. */}
+    <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
     <button type="submit">Send</button>
 
@@ -176,6 +180,19 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
 
   .promise {
     font-weight: 600;
+  }
+
+  aside a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .gotcha {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
   }
 
   .or,

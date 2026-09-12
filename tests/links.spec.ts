@@ -6,7 +6,7 @@ import { expect, test } from '@playwright/test';
  * nikolaidev.online and shelters.world stopped resolving.
  */
 test('@network every outbound link still resolves', async ({ page, request }) => {
-  await page.goto('/Nikolai/');
+  await page.goto('');
 
   const urls = await page.$$eval('a[href^="http"]', (links) =>
     Array.from(new Set(links.map((a) => (a as HTMLAnchorElement).href))),

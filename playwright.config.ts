@@ -1,6 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import astroConfig from './astro.config.mjs';
 
 const port = 4321;
+
+// Taken from the Astro config so the base path lives in exactly one place.
+const base = astroConfig.base ?? '/';
 
 export default defineConfig({
   testDir: './tests',
@@ -9,13 +13,13 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: `http://localhost:${port}`,
+    baseURL: `http://localhost:${port}${base}/`.replace(/\/+$/, '/'),
     trace: 'on-first-retry',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: `pnpm build && pnpm exec astro preview --port ${port}`,
-    url: `http://localhost:${port}/Nikolai/`,
+    url: `http://localhost:${port}${base}/`.replace(/\/+$/, '/'),
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     // Astro 7 puts preview in the background when it thinks an AI agent is

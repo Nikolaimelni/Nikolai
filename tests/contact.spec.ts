@@ -1,13 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-const home = '/Nikolai/';
-
+// Fields are addressed by id, not by label copy: the wording is meant to change.
 async function fillForm(page: import('@playwright/test').Page) {
-  await page.getByLabel('Your name').fill('Test Person');
-  await page.getByLabel('Email').fill('test@example.com');
-  await page
-    .getByLabel('What do you need built?')
-    .fill('A long enough message to pass validation.');
+  await page.locator('#name').fill('Test Person');
+  await page.locator('#email').fill('test@example.com');
+  await page.locator('#message').fill('A long enough message to pass validation.');
 }
 
 test('a sent message reports success and clears the form', async ({ page }) => {
@@ -15,12 +12,12 @@ test('a sent message reports success and clears the form', async ({ page }) => {
     route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }),
   );
 
-  await page.goto(home);
+  await page.goto('');
   await fillForm(page);
   await page.getByRole('button', { name: 'Send' }).click();
 
   await expect(page.getByRole('status')).toContainText('Sent');
-  await expect(page.getByLabel('Your name')).toHaveValue('');
+  await expect(page.locator('#name')).toHaveValue('');
 });
 
 test('a failed send actually shows the error', async ({ page }) => {
@@ -28,7 +25,7 @@ test('a failed send actually shows the error', async ({ page }) => {
   // message could never appear and a lost enquiry looked like a sent one.
   await page.route('**/formspree.io/**', (route) => route.fulfill({ status: 500, body: '' }));
 
-  await page.goto(home);
+  await page.goto('');
   await fillForm(page);
   await page.getByRole('button', { name: 'Send' }).click();
 
