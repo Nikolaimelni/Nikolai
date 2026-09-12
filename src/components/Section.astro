@@ -3,12 +3,15 @@ interface Props {
   id: string;
   title: string;
   lead?: string;
+  /** Shades the section and bleeds it to the viewport edges, to break up a
+      page that is otherwise one long run of identical hairline rules. */
+  shaded?: boolean;
 }
 
-const { id, title, lead } = Astro.props;
+const { id, title, lead, shaded = false } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-title`}>
+<section id={id} aria-labelledby={`${id}-title`} data-shaded={shaded ? '' : undefined}>
   <div class="head">
     <h2 id={`${id}-title`}>{title}</h2>
     {lead && <p class="lead">{lead}</p>}
@@ -20,6 +23,14 @@ const { id, title, lead } = Astro.props;
   section {
     padding-block: clamp(3rem, 8vw, 6rem);
     border-top: 1px solid var(--rule);
+  }
+
+  /* Paints past the container without touching the layout inside it. */
+  section[data-shaded] {
+    border-top: none;
+    background: var(--surface);
+    box-shadow: 0 0 0 100vw var(--surface);
+    clip-path: inset(0 -100vw);
   }
 
   .head {

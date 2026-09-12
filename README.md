@@ -27,6 +27,7 @@ Everything else:
 | `pnpm test` | Playwright, offline |
 | `pnpm test:links` | hits every outbound link, runs weekly in CI |
 | `pnpm og` | regenerates the social card and the touch icon |
+| `pnpm format` | Biome, writing fixes |
 
 ## Where things are
 
@@ -35,8 +36,8 @@ availability line, the numbers in the hero: all of it is there, so updating the
 CV never means opening a component.
 
 Projects are markdown in `src/content/projects/`, validated by a Zod schema in
-`src/content.config.ts`. A project whose domain has died gets `offline: true`
-and renders without a link.
+`src/content.config.ts`. Adding one means adding a file and a cover image;
+nothing in the components needs touching.
 
 Styles are two files. `src/styles/tokens.css` holds the colours and the type
 scale, `src/styles/base.css` the element defaults. Components carry their own
@@ -56,6 +57,12 @@ framework I had edited from the inside.
 **Biome does not lint `.astro`.** It reads the frontmatter without seeing the
 template, so every import used only in markup looks unused. `astro check` covers
 those files instead, and Biome handles the rest.
+
+**The social card is rendered by Chromium, not by sharp.** sharp's SVG renderer
+ignores an embedded `@font-face` and quietly falls back to whatever the machine
+has installed, so the card came out in a different typeface on every host.
+Playwright was already a dev dependency, so `pnpm og` drives a real browser and
+the card gets the same Plus Jakarta Sans as the page.
 
 **The green changed.** It was `#00B945`. White text on it measures 2.62:1, which
 fails WCAG AA, and that green was on the main button. It is `#046A38` now, at
