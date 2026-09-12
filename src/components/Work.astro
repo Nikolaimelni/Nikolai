@@ -68,6 +68,12 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     border: 1px solid var(--rule);
     border-radius: 14px;
     background: var(--surface);
+    transition: border-color 160ms ease;
+
+    &:hover,
+    &:focus-within {
+      border-color: color-mix(in oklab, var(--green) 45%, var(--rule));
+    }
 
     @media (width >= 55rem) {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);

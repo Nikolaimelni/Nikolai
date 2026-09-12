@@ -24,7 +24,6 @@ export const profile = {
   proof: [
     { figure: '7', label: 'regulated markets, from Sweden to New Jersey' },
     { figure: '5+', label: 'years in front-end, React since 2022' },
-    { figure: '2', label: 'frameworks in production: React 19 and Angular 20' },
     { figure: '1,000+', label: 'person product company, on-site in Lisbon' },
   ],
 
@@ -78,7 +77,7 @@ export const profile = {
       earlier: false,
       points: [
         'Built and optimized React, Next.js and TypeScript applications for a financial analytics product, with Redux and MobX holding application state.',
-        'Built data-heavy dashboards and interactive charts for financial metrics, and shipped the payment system and the advertising integrations.',
+        'Dashboards and interactive charts over a lot of moving numbers. Shipped the payment system and the advertising integrations on the same product.',
         'Worked on SEO and Core Web Vitals across the Next.js application, on rendering, metadata and page speed.',
       ],
     },
@@ -135,7 +134,7 @@ export const profile = {
       ],
     },
     {
-      label: 'Also shipped with',
+      label: 'Shipped with, not living in',
       items: [
         'Angular 20',
         'RxJS',
@@ -163,7 +162,7 @@ export const profile = {
       items: ['Playwright', 'Cypress', 'Astro'],
     },
     {
-      label: 'Daily, with the output checked',
+      label: 'Used daily, output always reviewed',
       items: ['Claude Code', 'GitHub Copilot'],
     },
   ],

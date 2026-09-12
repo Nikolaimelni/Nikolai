@@ -140,10 +140,33 @@ const earlier = profile.experience.filter((role) => role.earlier);
   summary {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     min-height: 44px;
     font-weight: 600;
     cursor: pointer;
     color: var(--green);
+    list-style: none;
+    width: fit-content;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    rotate: -45deg;
+    translate: 0 -1px;
+    transition: rotate 160ms ease;
+  }
+
+  details[open] summary::before {
+    rotate: 45deg;
+    translate: 0 -2px;
   }
 
   details[open] summary {
