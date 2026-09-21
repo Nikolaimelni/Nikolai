@@ -24,8 +24,7 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     <p class="sub">{profile.subhead}</p>
 
     <div class="actions">
-      {/* Was a mailto:, which does nothing visible on a desktop with no mail
-          client configured. The form below always works. */}
+      {/* The form, because mailto: does nothing on a desktop with no mail client. */}
       <a class="btn primary" href="#contact">Get in touch</a>
       <a class="btn" href={withBase(profile.links.cv)} download>
         Download CV <span class="meta">PDF, {cvSize} KB</span>
@@ -129,7 +128,7 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
   .primary {
     background: var(--green);
     border-color: var(--green);
-    color: light-dark(#fff, #08130d);
+    color: var(--on-green);
 
     &:hover {
       background: color-mix(in oklab, var(--green) 86%, var(--ink));
@@ -144,7 +143,7 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     border-radius: clamp(1rem, 3vw, 2rem);
     background: linear-gradient(135deg, var(--vivid), #1a1eb2);
 
-    /* Nikolai's dot motif, as a background instead of two SVG files. */
+    /* Dot grids, drawn with a gradient so there are no extra image requests. */
     &::before,
     &::after {
       content: '';
@@ -155,9 +154,8 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
       background-size: 0.62rem 0.62rem;
     }
 
-    /* The dots hang outside the frame, which is the detail worth keeping from
-       the old site. On a narrow phone that put them off-screen and gave the
-       page 23px of sideways drag, so below 48rem they tuck inside instead. */
+    /* The dots hang outside the frame from 48rem up. Any narrower and they
+       poke past the edge of the screen, so they tuck inside. */
     &::before {
       color: var(--blue);
       top: 2rem;

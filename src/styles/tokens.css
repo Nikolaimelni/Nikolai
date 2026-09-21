@@ -1,18 +1,17 @@
 :root {
   color-scheme: light dark;
 
-  /* The old green was #00B945. White text on it lands at 2.62:1, well under AA,
-     so the working green here is deeper. The original survives as --vivid and is
-     only used behind the photo, where no text sits on it. */
+  /* #00b945 is the brand green, but white text on it is 2.62:1. Text and buttons
+     use the deeper --green, and --vivid only sits behind the photo. */
   --green: light-dark(#046a38, #39d98a);
+  --on-green: light-dark(#ffffff, #08130d);
   --blue: light-dark(#1a1eb2, #8e92ff);
   --vivid: #00b945;
 
   --paper: light-dark(#fbfcfb, #0e1311);
   --surface: light-dark(#ffffff, #151c19);
   --ink: light-dark(#101714, #e9efeb);
-  /* Long-form body copy. Everything used to be --muted, which flattened the
-     page: when all the text is grey, none of it is emphasised. */
+  /* Body copy. --muted is for secondary text only. */
   --ink-soft: light-dark(#2e3a35, #c2ccc7);
   --muted: light-dark(#5a6660, #97a39e);
   --rule: light-dark(#e2e7e4, #232b28);

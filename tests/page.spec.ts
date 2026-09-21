@@ -1,9 +1,13 @@
+import { readdirSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
+
+const projects = readdirSync(new URL('../src/content/projects/', import.meta.url)).filter((file) =>
+  file.endsWith('.md'),
+);
 
 test('the page renders its sections', async ({ page }) => {
   await page.goto('');
 
-  // The old site had four h1 elements, which is why this is pinned.
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('main')).toHaveCount(1);
 
@@ -11,18 +15,17 @@ test('the page renders its sections', async ({ page }) => {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
-  const work = page.locator('#work');
-  await expect(work.getByRole('heading', { name: 'Numfin Global' })).toBeVisible();
-  await expect(work.locator('.project')).toHaveCount(2);
+  // A card per markdown file, so adding a project does not break this.
+  const titles = page.locator('#work').getByRole('heading', { level: 3 });
+  await expect(titles).toHaveCount(projects.length);
 });
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto('');
 
-  // The dots beside the portrait overhang on purpose and are clipped, so
-  // scrollWidth is not the measure. What matters is whether a thumb can drag
-  // the page sideways, which is what the old site let you do by 23px.
+  // The dots beside the portrait overhang on purpose and get clipped, so
+  // scrollWidth would fail. What matters is whether the page drags sideways.
   const scrolled = await page.evaluate(() => {
     window.scrollTo(9999, 0);
     return window.scrollX;
@@ -70,7 +73,6 @@ test('content survives without javascript', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto('');
 
-  // Half the old page sat at opacity 0 waiting on a scroll handler.
   await expect(page.locator('#work')).toBeVisible();
   await expect(page.locator('#contact form')).toBeVisible();
   await context.close();

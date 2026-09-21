@@ -1,11 +1,6 @@
-/**
- * Everything that changes over time lives here, so updating the CV never means
- * touching a component. Kept in step with the master CV, which is the source of truth.
- *
- * Two rules carried over from it:
- *  - No client or brand names from the current employer. Impersonal only.
- *  - No internal package, service or repository names.
- */
+// Everything that changes lives here, so updating the CV never means opening a
+// component. Same rules as the master CV: no client or brand names from the
+// current employer, no internal package, service or repo names.
 
 export const profile = {
   name: 'Nikolai Melnichenko',

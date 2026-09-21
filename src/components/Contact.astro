@@ -88,9 +88,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
 
-    /* Grid tracks take their min-content from the longest unbreakable string,
-       and the email address is one. Without this the column wins over the
-       viewport on a 320px phone. */
+    /* The email address is one unbreakable word and pushes the column past 320px. */
     > * {
       min-width: 0;
     }
@@ -143,7 +141,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     background: var(--green);
     border: 1px solid var(--green);
     border-radius: 8px;
-    color: light-dark(#fff, #08130d);
+    color: var(--on-green);
     font-weight: 600;
     cursor: pointer;
 

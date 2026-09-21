@@ -1,7 +1,6 @@
 name: links
 
-# Every outbound link on the site, once a week. This exists because
-# shelters.world stopped resolving and the site kept linking to it for months.
+# Every outbound link on the site, once a week.
 on:
   schedule:
     - cron: '0 7 * * 1'

@@ -28,8 +28,7 @@ const sections = [
 </nav>
 
 <script>
-  // Marks the section you are looking at. The page is long enough that without
-  // this there is no way to tell where you are. Links work fine without it.
+  // Marks the section in view. The links work without it.
   const links = document.querySelectorAll<HTMLAnchorElement>('nav a[data-spy]');
 
   const observer = new IntersectionObserver(
@@ -94,7 +93,6 @@ const sections = [
     }
   }
 
-  /* 44px tall so these are real targets on a phone, not 17px lines of text. */
   .brand,
   ul a {
     display: inline-flex;
