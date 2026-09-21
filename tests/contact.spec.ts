@@ -44,5 +44,7 @@ test('a failed send actually shows the error', async ({ page }) => {
   await page.getByRole('button', { name: 'Send' }).click();
 
   await expect(page.getByRole('status')).toContainText('did not go through');
+  const email = await page.locator('a[href^="mailto:"]').first().innerText();
+  await expect(page.getByRole('status')).toContainText(email);
   await expect(page.getByRole('button', { name: 'Send' })).toBeEnabled();
 });

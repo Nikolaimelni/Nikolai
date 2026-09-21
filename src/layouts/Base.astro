@@ -24,7 +24,11 @@ const person = {
   url: canonical,
   image: ogImage,
   email: profile.links.email,
-  address: { '@type': 'PostalAddress', addressLocality: 'Lisbon', addressCountry: 'PT' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: profile.location.city,
+    addressCountry: profile.location.countryCode,
+  },
   knowsAbout: profile.skills.flatMap((group) => group.items),
   sameAs: [profile.links.github, profile.links.linkedin, profile.links.telegram],
 };

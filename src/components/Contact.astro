@@ -5,8 +5,8 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
 ---
 
 <div class="contact">
-  <!-- action and method are real, so the form still posts if the script never runs. -->
-  <form id="contact-form" action={endpoint} method="post">
+  {/* action and method are real, so the form still posts if the script never runs. */}
+  <form id="contact-form" action={endpoint} method="post" data-email={profile.links.email}>
     <div class="field">
       <label for="name">Your name</label>
       <input id="name" name="name" type="text" autocomplete="name" required />
@@ -74,7 +74,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
         status.textContent = 'Sent. I will get back to you within a day.';
       } catch {
         status.dataset.state = 'error';
-        status.textContent = `That did not go through. Write to ${'nikolai.melnichenko.fe@gmail.com'} instead and I will see it.`;
+        status.textContent = `That did not go through. Write to ${form.dataset.email} instead and I will see it.`;
       } finally {
         button.disabled = false;
       }

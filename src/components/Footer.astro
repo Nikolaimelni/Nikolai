@@ -2,7 +2,6 @@
 import { profile } from '../data/profile';
 
 const year = new Date().getFullYear();
-const source = 'https://github.com/Nikolaimelni/Nikolai';
 ---
 
 <footer>
@@ -16,7 +15,7 @@ const source = 'https://github.com/Nikolaimelni/Nikolai';
       thing I would fix.
     </p>
     <p>
-      <a href={source} target="_blank" rel="noopener noreferrer">Read the source</a>
+      <a href={profile.links.source} target="_blank" rel="noopener noreferrer">Read the source</a>
     </p>
   </div>
 
@@ -24,7 +23,9 @@ const source = 'https://github.com/Nikolaimelni/Nikolai';
     <p>
       <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
     </p>
-    <p class="meta">{profile.base} · {profile.authorization} · {year}</p>
+    <p class="meta">
+      {profile.location.city}, {profile.location.country} · {profile.authorization} · {year}
+    </p>
   </div>
 </footer>
 

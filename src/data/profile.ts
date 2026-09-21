@@ -10,7 +10,7 @@
 export const profile = {
   name: 'Nikolai Melnichenko',
   role: 'Front-End Developer',
-  base: 'Lisbon, Portugal',
+  location: { city: 'Lisbon', country: 'Portugal', countryCode: 'PT' },
   authorization: 'EU work authorization (Portuguese residence permit)',
   available: true,
   availability: 'Open to on-site in Lisbon, hybrid or fully remote',
@@ -33,6 +33,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/nikolai-melnichenko/',
     telegram: 'https://t.me/Nikolaimelni',
     cv: '/CV_Nikolai_Melnichenko.pdf',
+    source: 'https://github.com/nikolaimelni/Nikolai',
   },
 
   experience: [

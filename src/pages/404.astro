@@ -1,9 +1,10 @@
 ---
+import { profile } from '../data/profile';
 import Base from '../layouts/Base.astro';
 import { withBase } from '../lib/url';
 ---
 
-<Base title="Not here. Nikolai Melnichenko" description="That page does not exist." noindex>
+<Base title={`Not here. ${profile.name}`} description="That page does not exist." noindex>
   <main class="lost" id="main" tabindex="-1">
     <p class="code">404</p>
     <h1>That page is not here</h1>

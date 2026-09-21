@@ -1,8 +1,11 @@
 ---
+import { statSync } from 'node:fs';
 import { Image } from 'astro:assets';
 import photo from '../assets/profile.webp';
 import { profile } from '../data/profile';
 import { withBase } from '../lib/url';
+
+const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
 ---
 
 <header class="hero">
@@ -25,7 +28,7 @@ import { withBase } from '../lib/url';
           client configured. The form below always works. */}
       <a class="btn primary" href="#contact">Get in touch</a>
       <a class="btn" href={withBase(profile.links.cv)} download>
-        Download CV <span class="meta">PDF, 56 KB</span>
+        Download CV <span class="meta">PDF, {cvSize} KB</span>
       </a>
     </div>
   </div>
