@@ -22,9 +22,9 @@ export default defineConfig({
     url: `http://localhost:${port}${base}/`.replace(/\/+$/, '/'),
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    // Astro 7 puts preview in the background when it thinks an AI agent is
-    // driving the terminal. Playwright needs it in the foreground to know it
-    // is alive, and this variable turns the detection off.
-    env: { ASTRO_PREVIEW_BACKGROUND: '0' },
+    // astro preview backgrounds itself when it detects a coding agent, and
+    // Playwright then loses the process. Astro only checks that this variable
+    // exists (it sets it on its own detached child), so any value stops that.
+    env: { ASTRO_PREVIEW_BACKGROUND: '1' },
   },
 });

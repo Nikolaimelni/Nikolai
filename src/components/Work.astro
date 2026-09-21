@@ -68,7 +68,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     border: 1px solid var(--rule);
     border-radius: 14px;
     background: var(--surface);
-    transition: border-color 160ms ease;
+    transition: border-color var(--motion) ease;
 
     &:hover,
     &:focus-within {

@@ -1,4 +1,4 @@
-@layer reset, base, components, motion;
+@layer reset, base;
 
 @layer reset {
   *,
@@ -106,19 +106,5 @@
 
   ::selection {
     background: color-mix(in oklab, var(--green) 22%, transparent);
-  }
-}
-
-/* Last layer in the cascade, so it beats component animations without !important. */
-@layer motion {
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms;
-      animation-iteration-count: 1;
-      transition-duration: 0.01ms;
-      scroll-behavior: auto;
-    }
   }
 }

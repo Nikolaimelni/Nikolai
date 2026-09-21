@@ -53,7 +53,6 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
 
   if (form && status && button) {
     form.addEventListener('submit', async (event) => {
-      if (!form.reportValidity()) return;
       event.preventDefault();
 
       button.disabled = true;
@@ -65,6 +64,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
           method: 'POST',
           body: new FormData(form),
           headers: { Accept: 'application/json' },
+          signal: AbortSignal.timeout(10_000),
         });
 
         if (!response.ok) throw new Error(String(response.status));

@@ -20,6 +20,20 @@ test('a sent message reports success and clears the form', async ({ page }) => {
   await expect(page.locator('#name')).toHaveValue('');
 });
 
+test('an empty form never reaches formspree', async ({ page }) => {
+  let posted = false;
+  await page.route('**/formspree.io/**', (route) => {
+    posted = true;
+    return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+  });
+
+  await page.goto('');
+  await page.getByRole('button', { name: 'Send' }).click();
+
+  await expect(page.getByRole('status')).toBeEmpty();
+  expect(posted).toBe(false);
+});
+
 test('a failed send actually shows the error', async ({ page }) => {
   // On the old site the error node lived inside a hidden parent, so this
   // message could never appear and a lost enquiry looked like a sent one.

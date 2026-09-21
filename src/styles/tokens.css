@@ -32,4 +32,14 @@
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 62ch;
   --column: 78rem;
+
+  --motion: 140ms;
+}
+
+/* Transitions read this instead of being switched off from base.css. Component
+   styles are unlayered and beat anything in a layer, so an override there loses. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0ms;
+  }
 }

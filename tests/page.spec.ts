@@ -55,6 +55,16 @@ test('the nav marks the section in view', async ({ page }) => {
   await expect(link).toHaveAttribute('aria-current', 'true');
 });
 
+test('reduced motion switches transitions off', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('');
+
+  const durations = await page
+    .getByRole('link', { name: 'Get in touch' })
+    .evaluate((el) => getComputedStyle(el).transitionDuration.split(', ').map(Number.parseFloat));
+  expect(durations.every((seconds) => seconds === 0)).toBe(true);
+});
+
 test('content survives without javascript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
