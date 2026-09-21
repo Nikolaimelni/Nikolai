@@ -7,9 +7,10 @@ import '../styles/base.css';
 interface Props {
   title: string;
   description: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(withBase('/og.png'), Astro.site).href;
@@ -22,7 +23,7 @@ const person = {
   description,
   url: canonical,
   image: ogImage,
-  email: `mailto:${profile.links.email}`,
+  email: profile.links.email,
   address: { '@type': 'PostalAddress', addressLocality: 'Lisbon', addressCountry: 'PT' },
   knowsAbout: profile.skills.flatMap((group) => group.items),
   sameAs: [profile.links.github, profile.links.linkedin, profile.links.telegram],
@@ -37,13 +38,17 @@ const person = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${profile.name}, ${profile.role}`} />
+    <meta property="og:site_name" content={profile.name} />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
 

@@ -6,6 +6,7 @@ import { defineConfig } from 'astro/config';
 // адрес проекта на Pages. Когда домен вернётся: site на него, base убрать.
 export default defineConfig({
   site: 'https://nikolaimelni.github.io',
-  base: '/Nikolai',
+  // Keep the trailing slash: without it @astrojs/sitemap lists the home page twice.
+  base: '/Nikolai/',
   integrations: [sitemap()],
 });

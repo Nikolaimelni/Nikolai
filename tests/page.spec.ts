@@ -79,5 +79,6 @@ test('content survives without javascript', async ({ browser }) => {
 test('the 404 page works', async ({ page }) => {
   const response = await page.goto('no-such-page');
   expect(response?.status()).toBe(404);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('not here');
 });
