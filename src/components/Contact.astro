@@ -124,7 +124,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     width: 100%;
     padding: 0.7rem 0.85rem;
     background: var(--surface);
-    border: 1px solid var(--rule);
+    border: 1px solid var(--edge);
     border-radius: 8px;
     resize: vertical;
 
@@ -134,7 +134,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
 
     /* Only scold a field the visitor has actually filled in and left. */
     &:user-invalid {
-      border-color: #b3261e;
+      border-color: var(--error);
     }
   }
 
@@ -162,7 +162,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     }
 
     &[data-state='error'] {
-      color: light-dark(#b3261e, #f08a80);
+      color: var(--error);
     }
 
     &[data-state='pending'] {

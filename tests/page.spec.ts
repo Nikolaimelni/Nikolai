@@ -5,6 +5,7 @@ test('the page renders its sections', async ({ page }) => {
 
   // The old site had four h1 elements, which is why this is pinned.
   await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.getByRole('main')).toHaveCount(1);
 
   for (const id of ['work', 'experience', 'skills', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeVisible();
@@ -28,6 +29,30 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   });
 
   expect(scrolled).toBe(0);
+});
+
+test('anchor jumps clear the sticky nav', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.goto('');
+
+  const navBottom = () => page.locator('nav').evaluate((nav) => nav.getBoundingClientRect().bottom);
+
+  for (const id of ['work', 'experience', 'contact']) {
+    await page.locator(`nav a[href="#${id}"]`).click();
+    const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
+    expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
+  }
+
+  // The name in the nav points at #main, which starts right under the nav.
+  await page.locator('nav a.brand').click();
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+});
+
+test('the nav marks the section in view', async ({ page }) => {
+  await page.goto('');
+  const link = page.locator('nav a[href="#contact"]');
+  await link.click();
+  await expect(link).toHaveAttribute('aria-current', 'true');
 });
 
 test('content survives without javascript', async ({ browser }) => {

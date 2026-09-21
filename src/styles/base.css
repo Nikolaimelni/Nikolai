@@ -92,6 +92,18 @@
     border-radius: 2px;
   }
 
+  /* The skip link focuses this. A ring round all of the content helps nobody. */
+  main:focus {
+    outline: none;
+  }
+
+  /* 44px is the sticky nav. On a phone a jump to #main used to leave the first
+     line of the hero underneath it. */
+  main,
+  section[id] {
+    scroll-margin-top: 44px;
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--green) 22%, transparent);
   }

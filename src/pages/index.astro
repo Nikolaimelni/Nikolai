@@ -18,32 +18,35 @@ const description = profile.subhead;
 <Base title={title} description={description}>
   <div class="shell">
     <Nav />
-    <Hero />
-    <Proof />
 
-    <Section
-      id="work"
-      title="Selected work"
-      lead="What each one is, what I did on it, and what changed after."
-    >
-      <Work />
-    </Section>
+    <main id="main" tabindex="-1">
+      <Hero />
+      <Proof />
 
-    <Section id="experience" title="Experience" shaded>
-      <Experience />
-    </Section>
+      <Section
+        id="work"
+        title="Selected work"
+        lead="What each one is, what I did on it, and what changed after."
+      >
+        <Work />
+      </Section>
 
-    <Section id="skills" title="Stack and study">
-      <Skills />
-    </Section>
+      <Section id="experience" title="Experience" shaded>
+        <Experience />
+      </Section>
 
-    <Section
-      id="contact"
-      title="Let's talk"
-      lead="Hiring, a contract, or a second opinion on a front-end that has got away from you."
-    >
-      <Contact />
-    </Section>
+      <Section id="skills" title="Stack and study">
+        <Skills />
+      </Section>
+
+      <Section
+        id="contact"
+        title="Let's talk"
+        lead="Hiring, a contract, or a second opinion on a front-end that has got away from you."
+      >
+        <Contact />
+      </Section>
+    </main>
 
     <Footer />
   </div>

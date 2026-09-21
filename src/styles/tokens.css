@@ -16,6 +16,9 @@
   --ink-soft: light-dark(#2e3a35, #c2ccc7);
   --muted: light-dark(#5a6660, #97a39e);
   --rule: light-dark(#e2e7e4, #232b28);
+  /* Borders on fields and buttons. --rule is 1.22:1 and they need 3:1. */
+  --edge: light-dark(#848b87, #636f6a);
+  --error: light-dark(#b3261e, #f08a80);
 
   --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
