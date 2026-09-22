@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import { profile } from '../data/profile';
 import { withBase } from '../lib/url';
 import '../styles/tokens.css';
@@ -62,12 +63,7 @@ const person = {
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
-    />
+    <Font cssVariable="--font-jakarta" preload={[{ weight: 400 }]} />
 
     <script type="application/ld+json" set:html={JSON.stringify(person)} is:inline />
   </head>

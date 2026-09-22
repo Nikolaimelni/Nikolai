@@ -19,7 +19,8 @@
   --edge: light-dark(#848b87, #636f6a);
   --error: light-dark(#b3261e, #f08a80);
 
-  --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Family, files and fallbacks are set up in astro.config.mjs. */
+  --font: var(--font-jakarta);
 
   --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);

@@ -6,7 +6,10 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!.astro", "!public", "!**/*.astro"]
+    "includes": ["**", "!dist", "!.astro", "!public"]
+  },
+  "html": {
+    "experimentalFullSupportEnabled": true
   },
   "formatter": {
     "enabled": true,

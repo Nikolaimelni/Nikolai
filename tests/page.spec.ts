@@ -68,6 +68,18 @@ test('reduced motion switches transitions off', async ({ page }) => {
   expect(durations.every((seconds) => seconds === 0)).toBe(true);
 });
 
+test('nothing on the page loads from another site', async ({ page }) => {
+  const origins = new Set<string>();
+  page.on('request', (request) => {
+    if (request.url().startsWith('http')) origins.add(new URL(request.url()).origin);
+  });
+
+  await page.goto('');
+  await page.waitForLoadState('networkidle');
+
+  expect([...origins]).toEqual([new URL(page.url()).origin]);
+});
+
 test('content survives without javascript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
