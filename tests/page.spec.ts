@@ -34,6 +34,13 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   expect(scrolled).toBe(0);
 });
 
+test('the name in the nav renders with its space', async ({ page }) => {
+  await page.goto('');
+  const brand = page.locator('nav a.brand');
+  const markup = (await brand.textContent())?.replace(/\s+/g, ' ').trim();
+  expect(await brand.innerText()).toBe(markup);
+});
+
 test('anchor jumps clear the sticky nav', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 800 });
   await page.goto('');

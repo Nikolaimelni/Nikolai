@@ -12,7 +12,8 @@ const sections = [
 
 <nav aria-label="Sections">
   <a class="brand" href="#main">
-    {first} <span class="surname">{rest.join(' ')}</span>
+    {/* One inline box: as separate flex items the space between the names collapsed. */}
+    <span>{first} <span class="surname">{rest.join(' ')}</span></span>
   </a>
   <ul>
     {
