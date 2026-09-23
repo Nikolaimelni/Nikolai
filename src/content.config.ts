@@ -15,6 +15,8 @@ const projects = defineCollection({
       outcome: z.string(),
       cover: image(),
       coverAlt: z.string(),
+      // Kept in the repo but left off the page.
+      draft: z.boolean().default(false),
     };
 
     return z.discriminatedUnion('status', [

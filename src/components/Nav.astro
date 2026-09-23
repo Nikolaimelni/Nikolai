@@ -1,13 +1,18 @@
 ---
 import { profile } from '../data/profile';
 
+interface Props {
+  showWork: boolean;
+}
+
+const { showWork } = Astro.props;
 const [first, ...rest] = profile.name.split(' ');
 
 const sections = [
-  { id: 'work', label: 'Work' },
   { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ];
+if (showWork) sections.unshift({ id: 'work', label: 'Work' });
 ---
 
 <nav aria-label="Sections">

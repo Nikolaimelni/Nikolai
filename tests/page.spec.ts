@@ -1,9 +1,10 @@
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 
-const projects = readdirSync(new URL('../src/content/projects/', import.meta.url)).filter((file) =>
-  file.endsWith('.md'),
-);
+const projectsDir = new URL('../src/content/projects/', import.meta.url);
+const published = readdirSync(projectsDir)
+  .filter((file) => file.endsWith('.md'))
+  .filter((file) => !/^draft: true$/m.test(readFileSync(new URL(file, projectsDir), 'utf8')));
 
 test('the page renders its sections', async ({ page }) => {
   await page.goto('');
@@ -11,13 +12,14 @@ test('the page renders its sections', async ({ page }) => {
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('main')).toHaveCount(1);
 
-  for (const id of ['work', 'experience', 'skills', 'contact']) {
+  for (const id of ['experience', 'skills', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
-  // A card per markdown file, so adding a project does not break this.
+  // A card per published project. With none, the section and its nav link go.
   const titles = page.locator('#work').getByRole('heading', { level: 3 });
-  await expect(titles).toHaveCount(projects.length);
+  await expect(titles).toHaveCount(published.length);
+  await expect(page.locator('nav a[href="#work"]')).toHaveCount(published.length > 0 ? 1 : 0);
 });
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
@@ -47,7 +49,11 @@ test('anchor jumps clear the sticky nav', async ({ page }) => {
 
   const navBottom = () => page.locator('nav').evaluate((nav) => nav.getBoundingClientRect().bottom);
 
-  for (const id of ['work', 'experience', 'contact']) {
+  const ids = await page
+    .locator('nav a[data-spy]')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('data-spy') ?? ''));
+
+  for (const id of ids) {
     await page.locator(`nav a[href="#${id}"]`).click();
     const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
     expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
@@ -92,7 +98,7 @@ test('content survives without javascript', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto('');
 
-  await expect(page.locator('#work')).toBeVisible();
+  await expect(page.locator('#experience')).toBeVisible();
   await expect(page.locator('#contact form')).toBeVisible();
   await context.close();
 });

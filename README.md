@@ -1,84 +1,35 @@
-# nikolaidev
+# Nikolai Melnichenko
 
-My personal site. One page: who I am, what I have shipped, and how to reach me.
+A one-page personal site: who I am, what I work with and how to reach me.
+Live at [nikolaimelni.github.io/Nikolai](https://nikolaimelni.github.io/Nikolai/).
 
-It used to be a Start Bootstrap template with my edits written straight into the
-compiled `bootstrap.css`. That worked until it didn't, so this is the rewrite.
+## Built with
+
+- Astro 7, static output, no client-side framework
+- TypeScript in strict mode
+- Plain CSS with custom properties and cascade layers, no CSS framework
+- Astro content collections with Zod schemas
+- Plus Jakarta Sans, self-hosted through Astro's fonts API
+- Playwright for end-to-end tests, Biome for linting and formatting
+- GitHub Actions for CI and deploys to GitHub Pages
 
 ## Running it
+
+Needs Node 24 and pnpm.
 
 ```sh
 pnpm install
 pnpm dev
 ```
 
-Build and look at the real output:
+The dev server runs at http://localhost:4321/Nikolai/.
 
-```sh
-pnpm build && pnpm preview
-```
+`pnpm build` and `pnpm preview` show the production build. `pnpm lint`,
+`pnpm typecheck` and `pnpm test` are what CI runs.
 
-Everything else:
+## Content
 
-| command | what it does |
-| --- | --- |
-| `pnpm lint` | Biome over the TypeScript, CSS and config |
-| `pnpm typecheck` | `astro check`, which covers the `.astro` files |
-| `pnpm test` | Playwright, offline |
-| `pnpm test:links` | hits every outbound link, runs weekly in CI |
-| `pnpm og` | regenerates the social card and the touch icon |
-| `pnpm format` | Biome, writing fixes |
-
-## Where things are
-
-Career data lives in `src/data/profile.ts`. Job, dates, bullet points, the
-availability line, the numbers in the hero: all of it is there, so updating the
-CV never means opening a component.
-
-Projects are markdown in `src/content/projects/`, validated by a Zod schema in
-`src/content.config.ts`. Adding one means adding a file and a cover image;
-nothing in the components needs touching.
-
-Styles are two files. `src/styles/tokens.css` holds the colours and the type
-scale, `src/styles/base.css` the element defaults. Components carry their own
-CSS in their `.astro` file.
-
-## Decisions worth explaining
-
-**Astro, not Next.js.** The page has one interactive thing on it, the contact
-form. Shipping a React runtime to render static text is a strange trade. Astro
-builds it to HTML and the only JavaScript on the page is the twenty lines that
-submit the form.
-
-**No CSS framework.** Tailwind on a fifteen-component site buys less than it
-costs, and the old site is the argument: the whole problem was a vendored
-framework I had edited from the inside.
-
-**Biome does not lint `.astro`.** It reads the frontmatter without seeing the
-template, so every import used only in markup looks unused. `astro check` covers
-those files instead, and Biome handles the rest.
-
-**The social card is rendered by Chromium, not by sharp.** sharp's SVG renderer
-ignores an embedded `@font-face` and quietly falls back to whatever the machine
-has installed, so the card came out in a different typeface on every host.
-Playwright was already a dev dependency, so `pnpm og` drives a real browser and
-the card gets the same Plus Jakarta Sans as the page.
-
-**The green changed.** It was `#00B945`. White text on it measures 2.62:1, which
-fails WCAG AA, and that green was on the main button. It is `#046A38` now, at
-6.72:1. The original survives as `--vivid`, behind the photo, where no text sits
-on top of it.
-
-## Known issues
-
-The custom domain lapsed and is now a parking page, so the site is served from
-the GitHub Pages project URL. That is why `astro.config.mjs` sets a `base`. When
-the domain comes back, point `site` at it, drop `base`, and put `CNAME` back in
-`public/`.
-
-Fonts still come from Google Fonts, which is two extra connections before the
-page can paint. Self-hosting through `@fontsource` would kill that, and it is the
-next thing I would do.
-
-There is no blog. Content collections are already set up for one, so the
-scaffolding exists whenever I have something worth writing down.
+Everything on the page comes from `src/data/profile.ts`, plus one markdown file
+per project in `src/content/projects/`. A project with `draft: true` stays off
+the page, and with no published projects the Work section and its nav link are
+left out. After changing the profile, run `pnpm og` to redraw the social card.

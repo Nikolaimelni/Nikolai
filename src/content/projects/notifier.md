@@ -1,5 +1,6 @@
 ---
 title: Notifier
+draft: true
 order: 2
 summary: >-
   SMS campaigns for small businesses: upload a list, send, read the report.

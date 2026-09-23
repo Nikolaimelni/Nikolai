@@ -1,5 +1,6 @@
 ---
 title: Numfin Global
+draft: true
 order: 1
 summary: >-
   Stock market analytics for people who would otherwise keep ten tabs open:

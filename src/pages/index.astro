@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Contact from '../components/Contact.astro';
 import Experience from '../components/Experience.astro';
 import Focus from '../components/Focus.astro';
@@ -13,23 +14,31 @@ import Base from '../layouts/Base.astro';
 
 const title = `${profile.name}, ${profile.role}`;
 const description = profile.tagline;
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <Base title={title} description={description}>
   <div class="shell">
-    <Nav />
+    <Nav showWork={projects.length > 0} />
 
     <main id="main" tabindex="-1">
       <Hero />
       <Focus />
 
-      <Section
-        id="work"
-        title="Selected work"
-        lead="What each one is, what I did on it, and what changed after."
-      >
-        <Work />
-      </Section>
+      {
+        projects.length > 0 && (
+          <Section
+            id="work"
+            title="Selected work"
+            lead="What each one is, what I did on it, and what changed after."
+          >
+            <Work projects={projects} />
+          </Section>
+        )
+      }
 
       <Section id="experience" title="Experience" shaded>
         <Experience />
