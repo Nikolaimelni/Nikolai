@@ -1,10 +1,10 @@
 ---
 import Contact from '../components/Contact.astro';
 import Experience from '../components/Experience.astro';
+import Focus from '../components/Focus.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Nav from '../components/Nav.astro';
-import Proof from '../components/Proof.astro';
 import Section from '../components/Section.astro';
 import Skills from '../components/Skills.astro';
 import Work from '../components/Work.astro';
@@ -12,7 +12,7 @@ import { profile } from '../data/profile';
 import Base from '../layouts/Base.astro';
 
 const title = `${profile.name}, ${profile.role}`;
-const description = profile.subhead;
+const description = profile.tagline;
 ---
 
 <Base title={title} description={description}>
@@ -21,7 +21,7 @@ const description = profile.subhead;
 
     <main id="main" tabindex="-1">
       <Hero />
-      <Proof />
+      <Focus />
 
       <Section
         id="work"

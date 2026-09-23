@@ -10,16 +10,32 @@ export const profile = {
   available: true,
   availability: 'Open to on-site in Lisbon, hybrid or fully remote',
 
-  // The line that has to do the selling. Second half renders in the accent gradient.
-  headline: 'I build front‑ends',
-  headlineAccent: 'that ship in seven regulated markets',
+  // Second half renders in the accent gradient. \u2011 is a non-breaking hyphen,
+  // so no line in the hero ends on "front-" or "full-".
+  headline: 'I build React and TypeScript front\u2011ends',
+  headlineAccent: 'that stay easy to change',
   subhead:
-    'Five years in front-end, the last two on-site in Lisbon at a thousand-person product company. I build on the shared component library, set up the payment widget for each brand and work on the country-specific builds. Release Captain for my stream.',
+    'Front-end developer in Lisbon with 5+ years in software development. React, Next.js and TypeScript in production, and more than a year of Angular with NgRx and SSR. Available for contracts and full\u2011time roles.',
+  // Meta description and link previews, where the subhead would get cut off.
+  tagline: 'React, Next.js and TypeScript front-ends that stay easy to change.',
 
-  proof: [
-    { figure: '7', label: 'regulated markets, from Sweden to New Jersey' },
-    { figure: '5+', label: 'years in front-end, React since 2022' },
-    { figure: '1,000+', label: 'person product company, on-site in Lisbon' },
+  focus: [
+    {
+      title: 'Shared UI',
+      text: 'Product screens built on the shared component library and its SCSS/BEM structure, which every app on the platform uses.',
+    },
+    {
+      title: 'Payments',
+      text: 'The payment system on a fintech product, and a third-party payment widget set up for each brand.',
+    },
+    {
+      title: 'Performance',
+      text: 'Code splitting, lazy loading and bundle analysis, plus Core Web Vitals work on Next.js.',
+    },
+    {
+      title: 'Releases',
+      text: 'I run the release cycle for my team and wrote the branching and code-style rules it follows.',
+    },
   ],
 
   links: {
@@ -42,11 +58,11 @@ export const profile = {
       earlier: false,
       points: [
         'Built product features on the shared UI component library and the SCSS/BEM structure behind it, which every application on the platform uses.',
-        'Shipped country-specific builds into seven regulated markets across Europe, North America, Latin America and Africa, including Sweden, Denmark and New Jersey. Layout, content and compliance elements differ by jurisdiction, so each country gets its own project rather than a shared site.',
+        'Built and maintained per-country versions of the product on top of that library. Layout and content differ from country to country, so each one is its own app in the monorepo.',
         'Set up a third-party payment widget for each brand: configuration, loading it on the page and handling its events.',
         'Spent over a year on the Angular 20 side of the platform with RxJS, NgRx and SSR over Express, inside an Nx monorepo.',
         'Expanded automated test coverage with Vitest, React Testing Library and MSW, and cut page load times with code splitting, lazy loading and bundle analysis.',
-        'Release Captain for my stream, with full ownership of the release cycle. Wrote the release, branching and code-style conventions the stream works to.',
+        'Release Captain for my team, with full ownership of the release cycle. Wrote the release, branching and code-style conventions the team works to.',
       ],
     },
     {
