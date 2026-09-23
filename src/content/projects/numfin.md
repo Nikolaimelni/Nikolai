@@ -2,8 +2,8 @@
 title: Numfin Global
 order: 1
 summary: >-
-  Stock market analytics for people who would otherwise keep ten tabs open.
-  Data-heavy dashboards and interactive charts over a lot of moving numbers.
+  Stock market analytics for people who would otherwise keep ten tabs open:
+  dashboards and interactive charts over 60,000+ stocks from 70 exchanges.
 role: Front-end across the product
 stack: [TypeScript, React, 'Next.js', Redux, MobX, SQL]
 outcome: >-
@@ -12,7 +12,7 @@ outcome: >-
   work across the Next.js side.
 cover: ../../assets/projects/numfin.webp
 coverAlt: Numfin Global home page
-url: https://numfin.com/
+status: closed
 ---
 
 The longest project I have worked on, and the one with the most data behind it.

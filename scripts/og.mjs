@@ -1,5 +1,5 @@
 // Renders the social card and the touch icon into public/.
-// Run with `pnpm og` after changing the name, role or palette.
+// Run `pnpm og` after changing the profile or the palette.
 //
 // The card goes through Chromium rather than sharp's SVG renderer, which
 // ignores an embedded @font-face and silently falls back to whatever the host
@@ -8,6 +8,7 @@
 import { writeFile } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import sharp from 'sharp';
+import { profile } from '../src/data/profile.ts';
 
 const card = `<!doctype html>
 <html>
@@ -19,6 +20,7 @@ const card = `<!doctype html>
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
     />
     <style>
+      /* Light-theme values from src/styles/tokens.css. */
       * { box-sizing: border-box; margin: 0; }
       body {
         width: 1200px;
@@ -52,7 +54,7 @@ const card = `<!doctype html>
       }
       h1 { font-size: 86px; font-weight: 800; letter-spacing: -0.03em; }
       .role { font-size: 44px; font-weight: 600; color: #046a38; }
-      p { font-size: 38px; color: #5a6660; max-width: 22ch; line-height: 1.3; }
+      p { font-size: 38px; color: #5a6660; max-width: 22ch; line-height: 1.3; text-wrap: balance; }
       ul { display: flex; gap: 56px; list-style: none; padding: 0; margin-top: 14px; }
       li { font-size: 30px; font-weight: 600; }
     </style>
@@ -60,12 +62,11 @@ const card = `<!doctype html>
   <body>
     <div class="edge"></div>
     <div class="dots"></div>
-    <h1>Nikolai Melnichenko</h1>
-    <div class="role">Front-End Developer</div>
-    <p>React and TypeScript for products that ship in seven regulated markets.</p>
+    <h1>${profile.name}</h1>
+    <div class="role">${profile.role}</div>
+    <p>${profile.tagline}</p>
     <ul>
-      <li>Lisbon, Portugal</li>
-      <li>EU work authorization</li>
+      <li>${profile.location.city}, ${profile.location.country}</li>
     </ul>
   </body>
 </html>`;

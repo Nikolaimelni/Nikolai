@@ -11,5 +11,6 @@ outcome: >-
   does not have to be written twice.
 cover: ../../assets/projects/notifier.webp
 coverAlt: Notifier SMS campaign page
+status: live
 url: https://notifier.kz/
 ---

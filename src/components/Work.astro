@@ -22,9 +22,15 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 
         <div class="text">
           <h3>
-            <a href={data.url} target="_blank" rel="noopener noreferrer">
-              {data.title}
-            </a>
+            {data.status === 'live' ? (
+              <a href={data.url} target="_blank" rel="noopener noreferrer">
+                {data.title}
+              </a>
+            ) : (
+              <>
+                {data.title} <span class="closed">Closed</span>
+              </>
+            )}
           </h3>
 
           <p class="summary">{data.summary}</p>
@@ -42,11 +48,13 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
             ))}
           </ul>
 
-          <p class="links">
-            <a href={data.url} target="_blank" rel="noopener noreferrer">
-              Open the site
-            </a>
-          </p>
+          {data.status === 'live' && (
+            <p class="links">
+              <a href={data.url} target="_blank" rel="noopener noreferrer">
+                Open the site
+              </a>
+            </p>
+          )}
         </div>
       </li>
     ))
@@ -100,6 +108,18 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     flex-direction: column;
     gap: 1rem;
     align-items: start;
+  }
+
+  .closed {
+    margin-left: 0.3rem;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--edge);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0;
+    vertical-align: middle;
   }
 
   .summary {

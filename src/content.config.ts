@@ -4,8 +4,8 @@ import { z } from 'astro/zod';
 
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.md' }),
-  schema: ({ image }) =>
-    z.object({
+  schema: ({ image }) => {
+    const shared = {
       title: z.string(),
       // Lower number sorts higher on the page.
       order: z.number(),
@@ -15,8 +15,14 @@ const projects = defineCollection({
       outcome: z.string(),
       cover: image(),
       coverAlt: z.string(),
-      url: z.url(),
-    }),
+    };
+
+    return z.discriminatedUnion('status', [
+      z.object({ ...shared, status: z.literal('live'), url: z.url() }),
+      // The product has shut down, so there is nothing left to link to.
+      z.object({ ...shared, status: z.literal('closed') }),
+    ]);
+  },
 });
 
 export const collections = { projects };

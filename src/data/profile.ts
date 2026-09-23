@@ -6,7 +6,6 @@ export const profile = {
   name: 'Nikolai Melnichenko',
   role: 'Front-End Developer',
   location: { city: 'Lisbon', country: 'Portugal', countryCode: 'PT' },
-  authorization: 'EU work authorization (Portuguese residence permit)',
   available: true,
   availability: 'Open to on-site in Lisbon, hybrid or fully remote',
 
@@ -89,7 +88,7 @@ export const profile = {
       earlier: false,
       points: [
         'Built and optimized React, Next.js and TypeScript applications for a financial analytics product, with Redux and MobX holding application state.',
-        'Dashboards and interactive charts over a lot of moving numbers. Shipped the payment system and the advertising integrations on the same product.',
+        'Dashboards and interactive charts over 60,000+ stocks from 70 exchanges. Shipped the payment system and the advertising integrations on the same product.',
         'Worked on SEO and Core Web Vitals across the Next.js application, on rendering, metadata and page speed.',
       ],
     },
@@ -146,7 +145,7 @@ export const profile = {
       ],
     },
     {
-      label: 'Shipped with, not living in',
+      label: 'Also used in production',
       items: [
         'Angular 20',
         'RxJS',
@@ -200,5 +199,9 @@ export const profile = {
     },
   ],
 
-  languages: 'English: professional working. Russian: native. Portuguese: A2, learning.',
+  languages: [
+    { name: 'English', level: 'Professional working' },
+    { name: 'Russian', level: 'Native' },
+    { name: 'Portuguese', level: 'A2, learning' },
+  ],
 } as const;
