@@ -1,134 +1,27 @@
 ---
 import { profile } from '../data/profile';
+import Role from './Role.astro';
 
 const current = profile.experience.filter((role) => !role.earlier);
 const earlier = profile.experience.filter((role) => role.earlier);
 ---
 
 <ol class="roles">
-  {
-    current.map((role) => (
-      <li>
-        <div class="when">
-          <span class="years">
-            {role.from}&ndash;{role.to}
-          </span>
-          <span class="kind">{role.kind}</span>
-        </div>
-
-        <div class="what">
-          {/* Company sits in the heading: four roles share the same job title,
-              so heading-by-heading navigation was hearing it four times. */}
-          <h3>
-            {role.title}, {role.company}
-          </h3>
-          <p class="where">{role.place}</p>
-          <ul>
-            {role.points.map((point) => (
-              <li>{point}</li>
-            ))}
-          </ul>
-        </div>
-      </li>
-    ))
-  }
+  {current.map((role, i) => <Role role={role} latest={i === 0} />)}
 </ol>
 
 <details class="earlier">
   <summary>Before front-end: 2016 to 2022</summary>
   <ol class="roles">
-    {
-      earlier.map((role) => (
-        <li>
-          <div class="when">
-            <span class="years">
-              {role.from}&ndash;{role.to}
-            </span>
-            <span class="kind">{role.kind}</span>
-          </div>
-
-          <div class="what">
-            <h3>
-              {role.title}, {role.company}
-            </h3>
-            <p class="where">{role.place}</p>
-            <ul>
-              {role.points.map((point) => (
-                <li>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </li>
-      ))
-    }
+    {earlier.map((role) => <Role role={role} />)}
   </ol>
 </details>
 
 <style>
-  /* A rule down the left rather than a card per job. Cards flatten six years
-     of engineering and a four-month traineeship into the same object. */
   .roles {
     display: flex;
     flex-direction: column;
     gap: clamp(2rem, 4vw, 3rem);
-  }
-
-  .roles > li {
-    display: grid;
-    gap: 0.75rem 2rem;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--rule);
-
-    @media (width >= 52rem) {
-      grid-template-columns: 11rem minmax(0, 1fr);
-    }
-  }
-
-  .roles > li:first-child {
-    border-left-color: var(--green);
-  }
-
-  .when {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .years {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .kind,
-  .where {
-    font-size: var(--step--1);
-    color: var(--muted);
-  }
-
-  .what {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  /* The global reset strips markers everywhere. This is the one list that
-     reads better with them. */
-  .what ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    margin: 0.6rem 0 0;
-    padding-left: 1.1rem;
-    max-width: var(--measure);
-    list-style: disc;
-  }
-
-  .what li {
-    color: var(--ink-soft);
-  }
-
-  .what li::marker {
-    color: var(--green);
   }
 
   .earlier {
