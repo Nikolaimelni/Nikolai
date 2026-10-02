@@ -4,6 +4,7 @@ import Role from './Role.astro';
 
 const current = profile.experience.filter((role) => !role.earlier);
 const earlier = profile.experience.filter((role) => role.earlier);
+const years = earlier.flatMap((role) => [role.from, role.to]).map((date) => Number(date.slice(-4)));
 ---
 
 <ol class="roles">
@@ -11,7 +12,7 @@ const earlier = profile.experience.filter((role) => role.earlier);
 </ol>
 
 <details class="earlier">
-  <summary>Before front-end: 2016 to 2022</summary>
+  <summary>Before front-end: {Math.min(...years)} to {Math.max(...years)}</summary>
   <ol class="roles">
     {earlier.map((role) => <Role role={role} />)}
   </ol>
