@@ -4,8 +4,6 @@ updates:
     directory: /
     schedule:
       interval: monthly
-    cooldown:
-      default-days: 3
     # Majors come as their own PRs, so one breaking bump cannot hold up the rest.
     groups:
       minor-and-patch:
@@ -15,5 +13,3 @@ updates:
     directory: /
     schedule:
       interval: monthly
-    cooldown:
-      default-days: 3
