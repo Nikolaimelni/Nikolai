@@ -20,9 +20,5 @@ export default defineConfig({
     command: `pnpm build && pnpm exec astro preview --port ${port}`,
     url: baseURL,
     timeout: 120_000,
-    // astro preview backgrounds itself when it detects a coding agent, and
-    // Playwright then loses the process. Astro only checks that this variable
-    // exists (it sets it on its own detached child), so any value stops that.
-    env: { ASTRO_PREVIEW_BACKGROUND: '1' },
   },
 });
