@@ -1,11 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-/**
- * Tagged @network and kept out of `pnpm test` because it hits the open internet.
- * CI runs it on a schedule. This is the check that would have caught the day
- * nikolaidev.online and shelters.world stopped resolving.
- */
-test('@network every outbound link still resolves', async ({ page, request }) => {
+test('every outbound link still resolves', { tag: '@network' }, async ({ page, request }) => {
   await page.goto('');
 
   const urls = await page.$$eval('a[href^="http"]', (links) =>

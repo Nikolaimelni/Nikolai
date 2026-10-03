@@ -1,7 +1,7 @@
-import { expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 
 // Fields are addressed by id, not by label copy: the wording is meant to change.
-async function fillForm(page: import('@playwright/test').Page) {
+async function fillForm(page: Page) {
   await page.locator('#name').fill('Test Person');
   await page.locator('#email').fill('test@example.com');
   await page.locator('#message').fill('A long enough message to pass validation.');
@@ -30,6 +30,10 @@ test('an empty form never reaches formspree', async ({ page }) => {
   await page.goto('');
   await page.getByRole('button', { name: 'Send' }).click();
 
+  const valid = await page
+    .locator('#contact-form')
+    .evaluate((form: HTMLFormElement) => form.checkValidity());
+  expect(valid).toBe(false);
   await expect(page.getByRole('status')).toBeEmpty();
   expect(posted).toBe(false);
 });

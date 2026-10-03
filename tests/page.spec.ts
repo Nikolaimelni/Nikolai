@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 const projectsDir = new URL('../src/content/projects/', import.meta.url);
 const published = readdirSync(projectsDir)
   .filter((file) => file.endsWith('.md'))
-  .filter((file) => !/^draft: true$/m.test(readFileSync(new URL(file, projectsDir), 'utf8')));
+  .filter((file) => !/^draft:\s*true\b/m.test(readFileSync(new URL(file, projectsDir), 'utf8')));
 
 test('the page renders its sections', async ({ page }) => {
   await page.goto('');

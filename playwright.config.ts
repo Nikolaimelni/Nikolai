@@ -1,11 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 import astroConfig from './astro.config.mjs';
 
-// Not 4321: that is where `pnpm dev` runs, and the tests are meant for the build.
+// 4321 is where `pnpm dev` runs. The tests are meant for the build.
 const port = 4322;
-
-// Taken from the Astro config so the base path lives in exactly one place.
-const base = astroConfig.base ?? '/';
+const baseURL = new URL(astroConfig.base ?? '/', `http://localhost:${port}`).href;
 
 export default defineConfig({
   testDir: './tests',
@@ -14,13 +12,13 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: `http://localhost:${port}${base}/`.replace(/\/+$/, '/'),
+    baseURL,
     trace: 'on-first-retry',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: `pnpm build && pnpm exec astro preview --port ${port}`,
-    url: `http://localhost:${port}${base}/`.replace(/\/+$/, '/'),
+    url: baseURL,
     timeout: 120_000,
     // astro preview backgrounds itself when it detects a coding agent, and
     // Playwright then loses the process. Astro only checks that this variable
