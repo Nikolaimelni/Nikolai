@@ -1,7 +1,5 @@
 ---
 import { profile } from '../data/profile';
-
-const year = new Date().getFullYear();
 ---
 
 <footer>
@@ -19,7 +17,7 @@ const year = new Date().getFullYear();
     <p>
       <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
     </p>
-    <p class="meta">{profile.location.city}, {profile.location.country} · {year}</p>
+    <p class="meta">{profile.location.city}, {profile.location.country}</p>
   </div>
 </footer>
 
