@@ -15,13 +15,11 @@ const projects = defineCollection({
       outcome: z.string(),
       cover: image(),
       coverAlt: z.string(),
-      // Kept in the repo but left off the page.
       draft: z.boolean().default(false),
     };
 
     return z.discriminatedUnion('status', [
       z.object({ ...shared, status: z.literal('live'), url: z.url() }),
-      // The product has shut down, so there is nothing left to link to.
       z.object({ ...shared, status: z.literal('closed') }),
     ]);
   },

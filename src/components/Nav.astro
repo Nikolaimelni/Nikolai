@@ -17,7 +17,7 @@ if (showWork) sections.unshift({ id: 'work', label: 'Work' });
 
 <nav aria-label="Sections">
   <a class="brand" href="#main">
-    {/* One inline box: as separate flex items the space between the names collapsed. */}
+    {/* One inline box, or flex swallows the space between the names. */}
     <span>{first} <span class="surname">{rest.join(' ')}</span></span>
   </a>
   <ul>
@@ -34,7 +34,6 @@ if (showWork) sections.unshift({ id: 'work', label: 'Work' });
 </nav>
 
 <script>
-  // Marks the section in view. The links work without it.
   const links = document.querySelectorAll<HTMLAnchorElement>('nav a[data-spy]');
   // All of main, so the hero and Skills clear the mark too.
   const blocks = [...document.querySelectorAll('main > *')];
@@ -83,8 +82,7 @@ if (showWork) sections.unshift({ id: 'work', label: 'Work' });
     letter-spacing: -0.02em;
   }
 
-  /* The surname is what breaks the row at 320px, so it goes first. Losing it
-     keeps all three links reachable without a burger menu. */
+  /* At 320px the surname is what breaks the row. Dropping it beats a burger menu. */
   .surname {
     @media (width < 30rem) {
       display: none;

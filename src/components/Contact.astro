@@ -3,7 +3,6 @@ import { profile } from '../data/profile';
 ---
 
 <div class="contact">
-  {/* action and method are real, so the form still posts if the script never runs. */}
   <form id="contact-form" action={profile.links.form} method="post" data-email={profile.links.email}>
     <div class="field">
       <label for="name">Your name</label>
@@ -20,8 +19,7 @@ import { profile } from '../data/profile';
       <textarea id="message" name="message" rows="5" minlength="10" maxlength="5000" required></textarea>
     </div>
 
-    {/* Formspree drops anything that fills this in. Public page plus a free
-        tier means the first bot would otherwise eat the monthly quota. */}
+    {/* Honeypot. Formspree drops anything that fills it in. */}
     <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
     <p class="note">Messages go through Formspree. I use them only to reply.</p>
@@ -133,7 +131,6 @@ import { profile } from '../data/profile';
       border-color: var(--green);
     }
 
-    /* Only scold a field the visitor has actually filled in and left. */
     &:user-invalid {
       border-color: var(--error);
     }

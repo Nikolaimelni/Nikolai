@@ -24,7 +24,6 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     <p class="sub">{profile.subhead}</p>
 
     <div class="actions">
-      {/* The form, because mailto: does nothing on a desktop with no mail client. */}
       <a class="btn primary" href="#contact">Get in touch</a>
       <a class="btn" href={withBase(profile.links.cv)} download>
         Download CV <span class="meta">PDF, {cvSize} KB</span>
@@ -77,7 +76,6 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     max-width: 20ch;
   }
 
-  /* The one gradient on the page. Both ends clear AA on either ground. */
   .accent {
     background: linear-gradient(102deg, var(--green), var(--blue));
     background-clip: text;
@@ -115,7 +113,6 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     border-radius: clamp(1rem, 3vw, 2rem);
     background: linear-gradient(135deg, var(--vivid), var(--vivid-blue));
 
-    /* Dot grids, drawn with a gradient so there are no extra image requests. */
     &::before,
     &::after {
       content: '';
@@ -126,8 +123,7 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
       background-size: 0.62rem 0.62rem;
     }
 
-    /* The dots hang outside the frame from 48rem up. Any narrower and they
-       poke past the edge of the screen, so they tuck inside. */
+    /* Below 48rem the dots would poke past the edge of the screen. */
     &::before {
       color: var(--blue);
       top: 2rem;

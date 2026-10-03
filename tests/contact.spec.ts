@@ -1,6 +1,6 @@
 import { expect, type Page, test } from '@playwright/test';
 
-// Fields are addressed by id, not by label copy: the wording is meant to change.
+// By id, because the label wording keeps changing.
 async function fillForm(page: Page) {
   await page.locator('#name').fill('Test Person');
   await page.locator('#email').fill('test@example.com');
@@ -39,8 +39,6 @@ test('an empty form never reaches formspree', async ({ page }) => {
 });
 
 test('a failed send actually shows the error', async ({ page }) => {
-  // On the old site the error node lived inside a hidden parent, so this
-  // message could never appear and a lost enquiry looked like a sent one.
   await page.route('**/formspree.io/**', (route) => route.fulfill({ status: 500, body: '' }));
 
   await page.goto('');

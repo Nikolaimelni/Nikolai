@@ -38,9 +38,8 @@
 }
 
 @layer base {
-  /* Has to sit on html, not body. Overflow set on body propagates to the
-     viewport and the clip stops applying, which leaves the page draggable. */
   html {
+    /* On body this would propagate to the viewport and stop clipping. */
     overflow-x: clip;
     scroll-padding-top: var(--nav-height);
   }
@@ -93,7 +92,6 @@
     border-radius: 2px;
   }
 
-  /* The skip link focuses this. A ring round all of the content helps nobody. */
   main:focus {
     outline: none;
   }

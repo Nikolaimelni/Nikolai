@@ -72,7 +72,6 @@ const { projects } = Astro.props;
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  /* A border, not a shadow. These are the only boxed things on the page. */
   .project {
     display: grid;
     gap: clamp(1.25rem, 3vw, 2.5rem);
@@ -93,7 +92,6 @@ const { projects } = Astro.props;
     }
   }
 
-  /* Alternate the image side so the list does not read as a stack of identical rows. */
   .project:nth-child(even) .shot {
     @media (width >= 55rem) {
       order: 2;

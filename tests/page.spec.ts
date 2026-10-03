@@ -16,7 +16,7 @@ test('the page renders its sections', async ({ page }) => {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
-  // A card per published project. With none, the section and its nav link go.
+  // No published projects means no Work section and no nav link to it.
   const titles = page.locator('#work').getByRole('heading', { level: 3 });
   await expect(titles).toHaveCount(published.length);
   await expect(page.locator('nav a[href="#work"]')).toHaveCount(published.length > 0 ? 1 : 0);
@@ -26,8 +26,7 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto('');
 
-  // The dots beside the portrait overhang on purpose and get clipped, so
-  // scrollWidth would fail. What matters is whether the page drags sideways.
+  // scrollWidth counts the clipped dots by the portrait, so check whether the page moves.
   const scrolled = await page.evaluate(() => {
     window.scrollTo(9999, 0);
     return window.scrollX;

@@ -1,6 +1,5 @@
 // Everything that changes lives here, so updating the CV never means opening a
-// component. Same rules as the master CV: no client or brand names from the
-// current employer, no internal package, service or repo names.
+// component.
 
 export const profile = {
   name: 'Nikolai Melnichenko',
@@ -9,8 +8,7 @@ export const profile = {
   available: true,
   availability: 'Open to on-site in Lisbon, hybrid or fully remote',
 
-  // Second half renders in the accent gradient. \u2011 is a non-breaking hyphen,
-  // so no line in the hero ends on "front-" or "full-".
+  // \u2011 is a non-breaking hyphen, so no line ends on "front-" or "full-".
   headline: 'I build React and TypeScript front\u2011ends',
   headlineAccent: 'that stay easy to change',
   subhead:
