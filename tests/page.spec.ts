@@ -117,6 +117,25 @@ test('nothing on the page loads from another site', async ({ page }) => {
   expect([...origins]).toEqual([new URL(page.url()).origin]);
 });
 
+test('the content security policy blocks nothing we ship', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text());
+  });
+  page.on('pageerror', (error) => errors.push(error.message));
+
+  for (const path of ['', 'no-such-page']) {
+    await page.goto(path);
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('meta[http-equiv="content-security-policy"]')).toHaveCount(1);
+  }
+
+  // The one expected error is the 404 page reporting its own status.
+  expect(errors).toEqual([
+    'Failed to load resource: the server responded with a status of 404 (Not Found)',
+  ]);
+});
+
 test('content survives without javascript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();

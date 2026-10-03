@@ -9,6 +9,20 @@ export default defineConfig({
   // Keep the trailing slash: without it @astrojs/sitemap lists the home page twice.
   base: '/Nikolai/',
   integrations: [sitemap()],
+  // Pages cannot send headers, so this goes out as a <meta> tag, and a meta CSP
+  // cannot carry frame-ancestors. Astro adds the script and style hashes itself.
+  security: {
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "object-src 'none'",
+        "base-uri 'none'",
+        'form-action https://formspree.io',
+        'connect-src https://formspree.io',
+        "require-trusted-types-for 'script'",
+      ],
+    },
+  },
   // Fetched from Google at build time and served from the site itself, so a
   // visitor's browser never talks to Google.
   fonts: [
