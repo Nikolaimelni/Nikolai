@@ -42,7 +42,8 @@ left out. After changing the profile, run `pnpm og` to redraw the social card.
   the root of a host.
 - GitHub Pages cannot send response headers. The CSP goes out as a `<meta>` tag,
   which cannot carry `frame-ancestors`, so nothing stops another site from framing
-  the page.
+  the page. Astro also puts that tag at the end of `<head>`, so the font styles and
+  the JSON-LD above it fall outside the policy. Both are static.
 - Both projects are drafts for now, so the Work section is off.
 - `pnpm og` pulls the font from Google Fonts when it runs, while the site itself
   serves its own copy.
