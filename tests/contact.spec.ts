@@ -38,6 +38,24 @@ test('an empty form never reaches formspree', async ({ page }) => {
   expect(posted).toBe(false);
 });
 
+test('without javascript the form still posts to formspree', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  let method = '';
+  await page.route('**/formspree.io/**', (route) => {
+    method = route.request().method();
+    return route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Thanks</p>' });
+  });
+
+  await page.goto('');
+  await fillForm(page);
+  await page.getByRole('button', { name: 'Send' }).click();
+
+  await expect(page.locator('body')).toHaveText('Thanks');
+  expect(method).toBe('POST');
+  await context.close();
+});
+
 test('a failed send actually shows the error', async ({ page }) => {
   await page.route('**/formspree.io/**', (route) => route.fulfill({ status: 500, body: '' }));
 
