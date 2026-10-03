@@ -1,0 +1,7 @@
+# Nothing younger than a day gets installed. Hijacked releases tend to be
+# caught and pulled within hours.
+minimumReleaseAge: 1440
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
