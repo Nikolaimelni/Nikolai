@@ -26,7 +26,7 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
         tier means the first bot would otherwise eat the monthly quota. */}
     <input class="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-    <button type="submit">Send</button>
+    <button class="btn primary" type="submit">Send</button>
 
     <p class="status" role="status" aria-live="polite" data-status></p>
   </form>
@@ -35,15 +35,15 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     <p class="promise">I read everything and reply within a day, usually sooner.</p>
     <p class="or">Or skip the form:</p>
     <ul>
-      <li><a href={`mailto:${profile.links.email}`}>{profile.links.email}</a></li>
+      <li><a class="tap" href={`mailto:${profile.links.email}`}>{profile.links.email}</a></li>
       <li>
-        <a href={profile.links.telegram} target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a class="tap" href={profile.links.telegram} target="_blank" rel="noopener noreferrer">Telegram</a>
       </li>
       <li>
-        <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="tap" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </li>
       <li>
-        <a href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="tap" href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
       </li>
     </ul>
   </aside>
@@ -139,19 +139,9 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
     }
   }
 
-  button {
-    padding: 0.8rem 1.6rem;
-    background: var(--green);
-    border: 1px solid var(--green);
-    border-radius: 8px;
-    color: var(--on-green);
-    font-weight: 600;
-    cursor: pointer;
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: progress;
-    }
+  button:disabled {
+    opacity: 0.6;
+    cursor: progress;
   }
 
   .status {
@@ -181,12 +171,6 @@ const endpoint = 'https://formspree.io/f/xyyrkzpq';
 
   .promise {
     font-weight: 600;
-  }
-
-  aside a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
   }
 
   .gotcha {

@@ -4,10 +4,10 @@ import { profile } from '../data/profile';
 
 <footer>
   <div class="colophon">
-    <h2>About this page</h2>
+    <h2 class="small-heading">About this page</h2>
     <p>I built this site myself with Astro, TypeScript and plain CSS.</p>
     <p>
-      <a href={profile.links.source} target="_blank" rel="noopener noreferrer">
+      <a class="tap" href={profile.links.source} target="_blank" rel="noopener noreferrer">
         The code is on GitHub
       </a>
     </p>
@@ -15,7 +15,7 @@ import { profile } from '../data/profile';
 
   <div class="line">
     <p>
-      <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
+      <a class="tap" href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
     </p>
     <p class="meta">{profile.location.city}, {profile.location.country}</p>
   </div>
@@ -37,13 +37,6 @@ import { profile } from '../data/profile';
     max-width: 58ch;
   }
 
-  h2 {
-    font-size: var(--step-0);
-    font-weight: 600;
-    letter-spacing: 0;
-    color: var(--green);
-  }
-
   .colophon p {
     color: var(--ink-soft);
   }
@@ -61,11 +54,5 @@ import { profile } from '../data/profile';
 
   .meta {
     color: var(--muted);
-  }
-
-  footer a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
   }
 </style>

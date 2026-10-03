@@ -12,7 +12,7 @@ const years = earlier.flatMap((role) => [role.from, role.to]).map((date) => Numb
 </ol>
 
 <details class="earlier">
-  <summary>Before front-end: {Math.min(...years)} to {Math.max(...years)}</summary>
+  <summary class="tap">Before front-end: {Math.min(...years)} to {Math.max(...years)}</summary>
   <ol class="roles">
     {earlier.map((role) => <Role role={role} />)}
   </ol>
@@ -30,10 +30,7 @@ const years = earlier.flatMap((role) => [role.from, role.to]).map((date) => Numb
   }
 
   summary {
-    display: inline-flex;
-    align-items: center;
     gap: 0.5rem;
-    min-height: 44px;
     font-weight: 600;
     cursor: pointer;
     color: var(--green);

@@ -46,7 +46,7 @@ const { projects } = Astro.props;
             <dd>{data.outcome}</dd>
           </dl>
 
-          <ul class="stack">
+          <ul class="stack dot-list">
             {data.stack.map((tool) => (
               <li>{tool}</li>
             ))}
@@ -54,7 +54,7 @@ const { projects } = Astro.props;
 
           {data.status === 'live' && (
             <p class="links">
-              <a href={data.url} target="_blank" rel="noopener noreferrer">
+              <a class="tap" href={data.url} target="_blank" rel="noopener noreferrer">
                 Open the site
               </a>
             </p>
@@ -150,21 +150,10 @@ const { projects } = Astro.props;
   }
 
   .stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.85rem;
     color: var(--muted);
   }
 
-  .stack li:not(:last-child)::after {
-    content: '·';
-    margin-left: 0.85rem;
-  }
-
   .links a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
     font-weight: 600;
   }
 </style>
