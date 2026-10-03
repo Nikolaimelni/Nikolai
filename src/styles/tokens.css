@@ -2,11 +2,12 @@
   color-scheme: light dark;
 
   /* #00b945 is the brand green, but white text on it is 2.62:1. Text and buttons
-     use the deeper --green, and --vivid only sits behind the photo. */
+     use the deeper --green, and the --vivid pair only sits behind the photo. */
   --green: light-dark(#046a38, #39d98a);
   --on-green: light-dark(#ffffff, #08130d);
   --blue: light-dark(#1a1eb2, #8e92ff);
   --vivid: #00b945;
+  --vivid-blue: #1a1eb2;
 
   --paper: light-dark(#fbfcfb, #0e1311);
   --surface: light-dark(#ffffff, #151c19);

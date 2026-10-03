@@ -113,7 +113,7 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
     justify-self: center;
     width: min(100%, 30rem);
     border-radius: clamp(1rem, 3vw, 2rem);
-    background: linear-gradient(135deg, var(--vivid), #1a1eb2);
+    background: linear-gradient(135deg, var(--vivid), var(--vivid-blue));
 
     /* Dot grids, drawn with a gradient so there are no extra image requests. */
     &::before,
