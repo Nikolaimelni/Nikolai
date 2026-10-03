@@ -42,6 +42,7 @@
      viewport and the clip stops applying, which leaves the page draggable. */
   html {
     overflow-x: clip;
+    scroll-padding-top: var(--nav-height);
   }
 
   body {
@@ -95,13 +96,6 @@
   /* The skip link focuses this. A ring round all of the content helps nobody. */
   main:focus {
     outline: none;
-  }
-
-  /* 44px is the sticky nav. On a phone a jump to #main used to leave the first
-     line of the hero underneath it. */
-  main,
-  section[id] {
-    scroll-margin-top: 44px;
   }
 
   ::selection {

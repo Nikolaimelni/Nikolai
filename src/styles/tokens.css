@@ -32,6 +32,7 @@
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 62ch;
   --column: 78rem;
+  --nav-height: 2.75rem;
 
   --motion: 140ms;
 }

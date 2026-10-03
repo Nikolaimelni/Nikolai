@@ -43,26 +43,36 @@ test('the name in the nav renders with its space', async ({ page }) => {
   expect(await brand.innerText()).toBe(markup);
 });
 
-test('anchor jumps clear the sticky nav', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 800 });
-  await page.goto('');
+// 200% is the text size WCAG expects a page to survive.
+for (const { width, text } of [
+  { width: 375, text: '100%' },
+  { width: 1280, text: '200%' },
+]) {
+  test(`anchor jumps clear the sticky nav at ${width}px, ${text} text`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('');
+    await page.evaluate((size) => {
+      document.documentElement.style.fontSize = size;
+    }, text);
 
-  const navBottom = () => page.locator('nav').evaluate((nav) => nav.getBoundingClientRect().bottom);
+    const navBottom = () =>
+      page.locator('nav').evaluate((nav) => nav.getBoundingClientRect().bottom);
 
-  const ids = await page
-    .locator('nav a[data-spy]')
-    .evaluateAll((links) => links.map((link) => link.getAttribute('data-spy') ?? ''));
+    const ids = await page
+      .locator('nav a[data-spy]')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('data-spy') ?? ''));
 
-  for (const id of ids) {
-    await page.locator(`nav a[href="#${id}"]`).click();
-    const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
-    expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
-  }
+    for (const id of ids) {
+      await page.locator(`nav a[href="#${id}"]`).click();
+      const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
+      expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
+    }
 
-  // The name in the nav points at #main, which starts right under the nav.
-  await page.locator('nav a.brand').click();
-  expect(await page.evaluate(() => window.scrollY)).toBe(0);
-});
+    // The name in the nav points at #main, which starts right under the nav.
+    await page.locator('nav a.brand').click();
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  });
+}
 
 test('the nav marks the section in view and nothing else', async ({ page }) => {
   await page.goto('');
