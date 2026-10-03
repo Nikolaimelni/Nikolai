@@ -44,6 +44,7 @@ export const profile = {
     telegram: 'https://t.me/Nikolaimelni',
     cv: '/CV_Nikolai_Melnichenko.pdf',
     source: 'https://github.com/nikolaimelni/Nikolai',
+    form: 'https://formspree.io/f/xyyrkzpq',
   },
 
   experience: [
