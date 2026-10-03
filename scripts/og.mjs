@@ -88,5 +88,3 @@ await writeFile(
   'public/apple-touch-icon.png',
   await sharp(Buffer.from(icon)).resize(180, 180).png().toBuffer(),
 );
-
-console.log('wrote public/og.png and public/apple-touch-icon.png');
