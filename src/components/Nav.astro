@@ -36,25 +36,27 @@ if (showWork) sections.unshift({ id: 'work', label: 'Work' });
 <script>
   // Marks the section in view. The links work without it.
   const links = document.querySelectorAll<HTMLAnchorElement>('nav a[data-spy]');
+  // All of main, so the hero and Skills clear the mark too.
+  const blocks = [...document.querySelectorAll('main > *')];
+  const inView = new Set<Element>();
 
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        for (const link of links) {
-          // An empty aria-current counts as false, so toggleAttribute is not enough.
-          if (link.dataset.spy === entry.target.id) link.setAttribute('aria-current', 'true');
-          else link.removeAttribute('aria-current');
-        }
+        if (entry.isIntersecting) inView.add(entry.target);
+        else inView.delete(entry.target);
+      }
+      const current = blocks.find((block) => inView.has(block));
+      for (const link of links) {
+        // An empty aria-current counts as false, so toggleAttribute is not enough.
+        if (link.dataset.spy === current?.id) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
       }
     },
     { rootMargin: '-30% 0px -60% 0px' },
   );
 
-  for (const link of links) {
-    const section = link.dataset.spy && document.getElementById(link.dataset.spy);
-    if (section) observer.observe(section);
-  }
+  for (const block of blocks) observer.observe(block);
 </script>
 
 <style>

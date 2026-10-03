@@ -64,11 +64,25 @@ test('anchor jumps clear the sticky nav', async ({ page }) => {
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('the nav marks the section in view', async ({ page }) => {
+test('the nav marks the section in view and nothing else', async ({ page }) => {
   await page.goto('');
   const link = page.locator('nav a[href="#contact"]');
+  const marked = page.locator('nav a[aria-current]');
+
   await link.click();
   await expect(link).toHaveAttribute('aria-current', 'true');
+
+  // Skills has no nav link. Its top goes above the band the observer watches.
+  await page.locator('#skills').evaluate((skills) => {
+    const top = skills.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo(0, top - window.innerHeight * 0.2);
+  });
+  await expect(marked).toHaveCount(0);
+
+  await link.click();
+  await expect(marked).toHaveCount(1);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(marked).toHaveCount(0);
 });
 
 test('reduced motion switches transitions off', async ({ page }) => {
