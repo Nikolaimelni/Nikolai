@@ -1,10 +1,10 @@
 ---
-interface Props {
+type Props = {
   id: string;
   title: string;
   lead?: string;
   shaded?: boolean;
-}
+};
 
 const { id, title, lead, shaded = false } = Astro.props;
 ---

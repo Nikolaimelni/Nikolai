@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
-interface Props {
+type Props = {
   projects: CollectionEntry<'projects'>[];
-}
+};
 
 const { projects } = Astro.props;
 ---

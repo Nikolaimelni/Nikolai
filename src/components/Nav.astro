@@ -1,9 +1,9 @@
 ---
 import { profile } from '../data/profile';
 
-interface Props {
+type Props = {
   showWork: boolean;
-}
+};
 
 const { showWork } = Astro.props;
 const [first, ...rest] = profile.name.split(' ');

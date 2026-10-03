@@ -1,10 +1,10 @@
 ---
 import type { profile } from '../data/profile';
 
-interface Props {
+type Props = {
   role: (typeof profile.experience)[number];
   latest?: boolean;
-}
+};
 
 const { role, latest = false } = Astro.props;
 ---
