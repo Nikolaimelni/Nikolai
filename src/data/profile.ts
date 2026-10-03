@@ -124,7 +124,7 @@ export const profile = {
       kind: 'Before the switch',
       earlier: true,
       points: [
-        'Delivered the full design, construction and operation cycle for fuel depot sites, coordinating contractors, budgets and regulatory approvals. Six years in a regulated industry is where the habit of reading requirements twice came from.',
+        'Delivered the full design, construction and operation cycle for fuel depot sites, coordinating contractors, budgets and regulatory approvals.',
       ],
     },
   ],
