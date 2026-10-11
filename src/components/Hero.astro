@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import photo from '../assets/profile.webp';
+import photo from '../assets/portrait.jpg';
 import { profile } from '../data/profile';
+
+const current = profile.experience.find((role) => role.to === 'Present');
 
 // CV download is off until there is a new PDF. To bring it back, put the file in
 // public/ and restore these lines and the link below:
@@ -27,6 +29,7 @@ import { profile } from '../data/profile';
 
     <div class="actions">
       <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="#experience">See experience</a>
       {/*
       <a class="btn" href={withBase(profile.links.cv)} download>
         Download CV <span class="meta">PDF, {cvSize} KB</span>
@@ -35,20 +38,35 @@ import { profile } from '../data/profile';
     </div>
   </div>
 
-  <div class="portrait">
-    <Image src={photo} alt={`${profile.name}, front-end developer`} widths={[420, 640, 900]} sizes="(max-width: 60rem) 80vw, 40vw" loading="eager" fetchpriority="high" />
+  <div class="card">
+    <div class="portrait">
+      <Image src={photo} alt={profile.name} widths={[88, 176, 320, 370]} sizes="(min-width: 60rem) 10rem, 5.5rem" loading="eager" fetchpriority="high" />
+    </div>
+    <div>
+      <p class="name">{profile.name}</p>
+      <p class="role">{profile.role}</p>
+      <ul class="facts">
+        <li>{profile.location.city}, {profile.location.country}</li>
+        {current && <li>Now at {current.company}</li>}
+      </ul>
+      <ul class="links">
+        <li><a class="tap" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a class="tap" href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a class="tap" href={profile.links.telegram} target="_blank" rel="noopener noreferrer">Telegram</a></li>
+      </ul>
+    </div>
   </div>
 </header>
 
 <style>
   .hero {
     display: grid;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    gap: 2.5rem clamp(3rem, 7vw, 6rem);
     align-items: center;
-    padding-block: clamp(2rem, 6vw, 5rem) clamp(3rem, 8vw, 6rem);
+    padding-block: clamp(2rem, 5vw, 4rem) var(--section-space);
 
     @media (width >= 60rem) {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-columns: minmax(0, 1fr) 15.5rem;
     }
   }
 
@@ -59,35 +77,43 @@ import { profile } from '../data/profile';
     gap: 1.5rem;
   }
 
+  /* A pill only where the text fits on one line. */
   .status {
-    display: flex;
-    align-items: center;
+    display: inline-flex;
+    align-items: flex-start;
     gap: 0.55rem;
     font-size: var(--step--1);
     font-weight: 600;
-    color: var(--muted);
+    color: var(--ink-soft);
+
+    @media (width >= 30rem) {
+      padding: 0.35rem 0.85rem 0.35rem 0.7rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--surface);
+    }
   }
 
   .dot {
     width: 0.5rem;
     height: 0.5rem;
+    margin-top: 0.5em;
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--green);
     box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--green) 18%, transparent);
   }
 
   h1 {
-    max-width: 20ch;
+    max-width: 17ch;
   }
 
   .accent {
-    background: linear-gradient(102deg, var(--green), var(--blue));
-    background-clip: text;
-    color: transparent;
+    color: var(--green);
   }
 
   .sub {
-    max-width: 48ch;
+    max-width: 46ch;
     color: var(--ink-soft);
     font-size: var(--step-0);
     line-height: 1.55;
@@ -110,48 +136,68 @@ import { profile } from '../data/profile';
     color: var(--muted);
   }
 
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 1.25rem;
+    background: var(--surface);
+
+    @media (width >= 60rem) {
+      flex-direction: column;
+      gap: 1.1rem;
+      padding: 1.75rem 1rem 1.25rem;
+      text-align: center;
+    }
+  }
+
   .portrait {
-    position: relative;
-    justify-self: center;
-    width: min(100%, 30rem);
-    border-radius: clamp(1rem, 3vw, 2rem);
-    background: linear-gradient(135deg, var(--vivid), var(--vivid-blue));
+    width: 5.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
 
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      width: 3.2rem;
-      height: 5rem;
-      background-image: radial-gradient(currentColor 1.6px, transparent 1.7px);
-      background-size: 0.62rem 0.62rem;
-    }
-
-    /* Below 48rem the dots would poke past the edge of the screen. */
-    &::before {
-      color: var(--blue);
-      top: 2rem;
-      right: 0.9rem;
-
-      @media (width >= 48rem) {
-        right: -1.6rem;
-      }
-    }
-
-    &::after {
-      color: var(--vivid);
-      bottom: 2rem;
-      left: 0.9rem;
-
-      @media (width >= 48rem) {
-        left: -1.6rem;
-      }
+    @media (width >= 60rem) {
+      width: 10rem;
     }
   }
 
   .portrait :global(img) {
     width: 100%;
     height: auto;
+    border: 1px solid var(--rule);
     border-radius: inherit;
+  }
+
+  .name {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .role {
+    color: var(--green);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  .facts {
+    margin-top: 0.5rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    font-size: var(--step--1);
+    font-weight: 600;
+
+    @media (width >= 60rem) {
+      justify-content: center;
+    }
   }
 </style>

@@ -26,7 +26,6 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto('');
 
-  // scrollWidth counts the clipped dots by the portrait, so check whether the page moves.
   const scrolled = await page.evaluate(() => {
     window.scrollTo(9999, 0);
     return window.scrollX;

@@ -2,7 +2,7 @@
   color-scheme: light dark;
 
   /* #00b945 is the brand green, but white text on it is 2.62:1. Text and buttons
-     use the deeper --green, and the --vivid pair only sits behind the photo. */
+     use the deeper --green, and the --vivid pair only goes on the social card. */
   --green: light-dark(#046a38, #39d98a);
   --on-green: light-dark(#ffffff, #08130d);
   --blue: light-dark(#1a1eb2, #8e92ff);
