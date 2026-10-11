@@ -2,12 +2,8 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
-// nikolaidev.online lapsed and is parked, so for now this builds for the Pages
-// project URL. When the domain is back, point site at it and drop base.
 export default defineConfig({
-  site: 'https://nikolaimelni.github.io',
-  // Keep the trailing slash: without it @astrojs/sitemap lists the home page twice.
-  base: '/Nikolai/',
+  site: 'https://www.nikolaidev.online',
   integrations: [sitemap()],
   // Pages cannot send headers, so this goes out as a <meta> tag, and a meta CSP
   // cannot carry frame-ancestors. Astro adds the script and style hashes itself.

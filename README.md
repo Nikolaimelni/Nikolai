@@ -1,7 +1,7 @@
 # Nikolai Melnichenko
 
 A one-page personal site: who I am, what I work with and how to reach me.
-Live at [nikolaimelni.github.io/Nikolai](https://nikolaimelni.github.io/Nikolai/).
+Live at [www.nikolaidev.online](https://www.nikolaidev.online/).
 
 ## Built with
 
@@ -23,7 +23,7 @@ pnpm install
 pnpm dev
 ```
 
-The dev server runs at http://localhost:4321/Nikolai/.
+The dev server runs at http://localhost:4321/.
 
 `pnpm build` and `pnpm preview` show the production build. `pnpm lint`,
 `pnpm typecheck` and `pnpm test` are what CI runs.
@@ -37,9 +37,6 @@ left out. After changing the profile, run `pnpm og` to redraw the social card.
 
 ## Known issues
 
-- The custom domain lapsed, so the site builds for the Pages project URL. Under
-  `/Nikolai/` the generated `robots.txt` does nothing: crawlers only read it from
-  the root of a host.
 - GitHub Pages cannot send response headers. The CSP goes out as a `<meta>` tag,
   which cannot carry `frame-ancestors`, so nothing stops another site from framing
   the page. Astro also puts that tag at the end of `<head>`, so the font styles and
