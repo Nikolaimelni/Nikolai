@@ -1,11 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import { statSync } from 'node:fs';
 import photo from '../assets/profile.webp';
 import { profile } from '../data/profile';
-import { withBase } from '../lib/url';
 
-const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
+// CV download is off until there is a new PDF. To bring it back, put the file in
+// public/ and restore these lines and the link below:
+// import { statSync } from 'node:fs';
+// import { withBase } from '../lib/url';
+// const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
 ---
 
 <header class="hero">
@@ -25,9 +27,11 @@ const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
 
     <div class="actions">
       <a class="btn primary" href="#contact">Get in touch</a>
+      {/*
       <a class="btn" href={withBase(profile.links.cv)} download>
         Download CV <span class="meta">PDF, {cvSize} KB</span>
       </a>
+      */}
     </div>
   </div>
 
