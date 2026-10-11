@@ -19,7 +19,7 @@ const { id, title, lead, shaded = false } = Astro.props;
 
 <style>
   section {
-    padding-block: clamp(3rem, 8vw, 6rem);
+    padding-block: var(--section-space);
     border-top: 1px solid var(--rule);
   }
 
