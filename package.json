@@ -1,0 +1,31 @@
+{
+  "name": "nikolai-site",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "playwright test --grep-invert @network",
+    "og": "node scripts/og.mjs",
+    "test:links": "playwright test --grep @network"
+  },
+  "dependencies": {
+    "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "@biomejs/biome": "^2.5.13",
+    "@playwright/test": "^1.63.0",
+    "sharp": "^0.35.4",
+    "typescript": "^6.0.3"
+  }
+}

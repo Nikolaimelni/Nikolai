@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import Contact from '../components/Contact.astro';
+import Experience from '../components/Experience.astro';
+import Focus from '../components/Focus.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Nav from '../components/Nav.astro';
+import Section from '../components/Section.astro';
+import Skills from '../components/Skills.astro';
+import Work from '../components/Work.astro';
+import { profile } from '../data/profile';
+import Base from '../layouts/Base.astro';
+
+const title = `${profile.name}, ${profile.role}`;
+const description = profile.tagline;
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base title={title} description={description}>
+  <div class="shell">
+    <Nav showWork={projects.length > 0} />
+
+    <main id="main" tabindex="-1">
+      <Hero />
+      <Focus />
+
+      {
+        projects.length > 0 && (
+          <Section
+            id="work"
+            title="Selected work"
+            lead="What I did on each one and what changed after."
+          >
+            <Work projects={projects} />
+          </Section>
+        )
+      }
+
+      <Section id="experience" title="Experience" shaded>
+        <Experience />
+      </Section>
+
+      <Section id="skills" title="Stack and study">
+        <Skills />
+      </Section>
+
+      <Section
+        id="contact"
+        title="Let's talk"
+        lead="Hiring, a contract, or a second opinion on a front-end that has got away from you."
+      >
+        <Contact />
+      </Section>
+    </main>
+
+    <Footer />
+  </div>
+</Base>
+
+<style>
+  .shell {
+    max-width: var(--column);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+</style>

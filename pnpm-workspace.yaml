@@ -1,0 +1,14 @@
+# Nothing younger than a day gets installed. Hijacked releases tend to be
+# caught and pulled within hours.
+minimumReleaseAge: 1440
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
+auditConfig:
+  ignoreGhsas:
+    # http-cache-semantics, no fixed release yet. Astro only uses it to cache
+    # remote images during a build, and this site has none, so the shared-cache
+    # leak it describes has nowhere to happen. Drop this once a fix ships.
+    - GHSA-ch52-4w7c-c8xp

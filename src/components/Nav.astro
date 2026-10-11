@@ -1,0 +1,123 @@
+---
+import { profile } from '../data/profile';
+
+type Props = {
+  showWork: boolean;
+};
+
+const { showWork } = Astro.props;
+const [first, ...rest] = profile.name.split(' ');
+
+const sections = [
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+if (showWork) sections.unshift({ id: 'work', label: 'Work' });
+---
+
+<nav aria-label="Sections">
+  <a class="brand" href="#main">
+    {/* One inline box, or flex swallows the space between the names. */}
+    <span>{first} <span class="surname">{rest.join(' ')}</span></span>
+  </a>
+  <ul>
+    {
+      sections.map((section) => (
+        <li>
+          <a href={`#${section.id}`} data-spy={section.id}>
+            {section.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('nav a[data-spy]');
+  // All of main, so the hero and Skills clear the mark too.
+  const blocks = [...document.querySelectorAll('main > *')];
+  const inView = new Set<Element>();
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) inView.add(entry.target);
+        else inView.delete(entry.target);
+      }
+      const current = blocks.find((block) => inView.has(block));
+      for (const link of links) {
+        // An empty aria-current counts as false, so toggleAttribute is not enough.
+        if (link.dataset.spy === current?.id) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      }
+    },
+    { rootMargin: '-30% 0px -60% 0px' },
+  );
+
+  for (const block of blocks) observer.observe(block);
+</script>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    font-size: var(--step--1);
+
+    @media (width < 30rem) {
+      gap: 0.75rem;
+    }
+  }
+
+  .brand {
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  /* At 320px the surname is what breaks the row. Dropping it beats a burger menu. */
+  .surname {
+    @media (width < 30rem) {
+      display: none;
+    }
+  }
+
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    font-weight: 600;
+
+    @media (width < 30rem) {
+      gap: 0.7rem;
+    }
+  }
+
+  .brand,
+  ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--nav-height);
+  }
+
+  ul a {
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: var(--ink);
+    }
+
+    &[aria-current] {
+      color: var(--ink);
+      border-bottom-color: var(--green);
+    }
+  }
+</style>
