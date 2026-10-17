@@ -9,7 +9,7 @@ Live at [www.nikolaidev.online](https://www.nikolaidev.online/).
 - TypeScript in strict mode
 - Plain CSS with custom properties and cascade layers, no CSS framework
 - Astro content collections with Zod schemas
-- Plus Jakarta Sans, self-hosted through Astro's fonts API
+- Orbitron, Inter and Roboto Mono, self-hosted through Astro's fonts API
 - Astro's built-in CSP, with script and style hashes worked out at build time
 - Playwright for end-to-end tests, Biome for linting and formatting
 - GitHub Actions for CI and deploys to GitHub Pages

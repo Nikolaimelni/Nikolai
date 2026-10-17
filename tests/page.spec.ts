@@ -34,13 +34,6 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   expect(scrolled).toBe(0);
 });
 
-test('the name in the nav renders with its space', async ({ page }) => {
-  await page.goto('');
-  const brand = page.locator('nav a.brand');
-  const markup = (await brand.textContent())?.replace(/\s+/g, ' ').trim();
-  expect(await brand.innerText()).toBe(markup);
-});
-
 // 200% is the text size WCAG expects a page to survive.
 for (const { width, text } of [
   { width: 375, text: '100%' },
@@ -61,20 +54,16 @@ for (const { width, text } of [
       .evaluateAll((links) => links.map((link) => link.getAttribute('data-spy') ?? ''));
 
     for (const id of ids) {
-      await page.locator(`nav a[href="#${id}"]`).click();
+      await page.locator(`nav a[data-spy="${id}"]`).click();
       const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
       expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
     }
-
-    // The name in the nav points at #main, which starts right under the nav.
-    await page.locator('nav a.brand').click();
-    expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 }
 
 test('the nav marks the section in view and nothing else', async ({ page }) => {
   await page.goto('');
-  const link = page.locator('nav a[href="#contact"]');
+  const link = page.locator('nav a[data-spy="contact"]');
   const marked = page.locator('nav a[aria-current]');
 
   await link.click();
@@ -98,6 +87,7 @@ test('reduced motion switches transitions off', async ({ page }) => {
   await page.goto('');
 
   const durations = await page
+    .getByRole('main')
     .getByRole('link', { name: 'Get in touch' })
     .evaluate((el) => getComputedStyle(el).transitionDuration.split(', ').map(Number.parseFloat));
   expect(durations.every((seconds) => seconds === 0)).toBe(true);

@@ -21,9 +21,9 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 ---
 
 <Base title={title} description={description}>
-  <div class="shell">
-    <Nav showWork={projects.length > 0} />
+  <Nav showProjects={projects.length > 0} />
 
+  <div class="shell">
     <main id="main" tabindex="-1">
       <Hero />
       <Focus />
