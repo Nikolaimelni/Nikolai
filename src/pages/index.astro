@@ -1,13 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import Contact from '../components/Contact.astro';
+import Education from '../components/Education.astro';
 import Experience from '../components/Experience.astro';
 import Focus from '../components/Focus.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Nav from '../components/Nav.astro';
 import Section from '../components/Section.astro';
-import Skills from '../components/Skills.astro';
+import Stack from '../components/Stack.astro';
 import Work from '../components/Work.astro';
 import { profile } from '../data/profile';
 import Base from '../layouts/Base.astro';
@@ -28,6 +29,10 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
       <Hero />
       <Focus />
 
+      <Section id="stack" title="Stack">
+        <Stack />
+      </Section>
+
       {
         projects.length > 0 && (
           <Section
@@ -44,8 +49,8 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
         <Experience />
       </Section>
 
-      <Section id="skills" title="Stack and study">
-        <Skills />
+      <Section id="education" title="Education">
+        <Education />
       </Section>
 
       <Section

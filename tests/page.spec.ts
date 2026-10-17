@@ -12,7 +12,7 @@ test('the page renders its sections', async ({ page }) => {
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('main')).toHaveCount(1);
 
-  for (const id of ['experience', 'skills', 'contact']) {
+  for (const id of ['stack', 'experience', 'education', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
@@ -69,9 +69,9 @@ test('the nav marks the section in view and nothing else', async ({ page }) => {
   await link.click();
   await expect(link).toHaveAttribute('aria-current', 'true');
 
-  // Skills has no nav link. Its top goes above the band the observer watches.
-  await page.locator('#skills').evaluate((skills) => {
-    const top = skills.getBoundingClientRect().top + window.scrollY;
+  // Stack has no nav link. Its top goes above the band the observer watches.
+  await page.locator('#stack').evaluate((stack) => {
+    const top = stack.getBoundingClientRect().top + window.scrollY;
     window.scrollTo(0, top - window.innerHeight * 0.2);
   });
   await expect(marked).toHaveCount(0);

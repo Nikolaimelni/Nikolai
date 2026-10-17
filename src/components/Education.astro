@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import mining from '../assets/education/mining.webp';
+import tiu from '../assets/education/tiu.webp';
+import { profile } from '../data/profile';
+
+const logos = { tiu, mining };
+---
+
+<div class="rows">
+  {
+    profile.education.map((school) => (
+      <div class="row">
+        <p class="label">
+          {school.from} &ndash; {school.to}
+        </p>
+        <div class="school">
+          <Image src={logos[school.logo]} alt="" width={80} loading="lazy" decoding="async" />
+          <div>
+            <h3>{school.school}</h3>
+            <p class="meta">
+              {school.degree}, {school.field} · {school.place}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+
+  <div class="row">
+    <h3 class="label">Languages</h3>
+    <ul class="chips">
+      {
+        profile.languages.map((language) => (
+          <li>
+            {language.name} <span class="level">{language.level}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .school {
+    display: flex;
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  .school :global(img) {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .school h3 {
+    font-size: var(--step-1);
+  }
+
+  .meta {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+
+  .level {
+    margin-left: 0.25rem;
+    color: var(--muted);
+  }
+</style>
