@@ -31,9 +31,11 @@ The dev server runs at http://localhost:4321/.
 ## Content
 
 Everything on the page comes from `src/data/profile.ts`, plus one markdown file
-per project in `src/content/projects/`. A project with `draft: true` stays off
-the page, and with no published projects the Work section and its nav link are
-left out. After changing the profile, run `pnpm og` to redraw the social card.
+per project in `src/content/projects/`. A project needs a title, a summary, tags
+and a GitHub link; the cover is optional and the card shows a blank frame without
+one. A project with `draft: true` stays off the page, and with no published
+projects the Projects section and its nav link are left out. After changing the
+profile, run `pnpm og` to redraw the social card.
 
 ## Known issues
 
@@ -41,6 +43,6 @@ left out. After changing the profile, run `pnpm og` to redraw the social card.
   which cannot carry `frame-ancestors`, so nothing stops another site from framing
   the page. Astro also puts that tag at the end of `<head>`, so the font styles and
   the JSON-LD above it fall outside the policy. Both are static.
-- Both projects are drafts for now, so the Work section is off.
+- The six projects are placeholders until the real write-ups are ready.
 - `pnpm og` pulls the font from Google Fonts when it runs, while the site itself
   serves its own copy.

@@ -16,10 +16,12 @@ test('the page renders its sections', async ({ page }) => {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
-  // No published projects means no Work section and no nav link to it.
-  const titles = page.locator('#work').getByRole('heading', { level: 3 });
+  // No published projects means no Projects section and no nav link to it.
+  const titles = page.locator('#projects').getByRole('heading', { level: 3 });
   await expect(titles).toHaveCount(published.length);
-  await expect(page.locator('nav a[href="#work"]')).toHaveCount(published.length > 0 ? 1 : 0);
+  await expect(page.locator('nav a[data-spy="projects"]')).toHaveCount(
+    published.length > 0 ? 1 : 0,
+  );
 });
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {

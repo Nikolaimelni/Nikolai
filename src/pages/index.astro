@@ -7,9 +7,9 @@ import Focus from '../components/Focus.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Nav from '../components/Nav.astro';
+import Projects from '../components/Projects.astro';
 import Section from '../components/Section.astro';
 import Stack from '../components/Stack.astro';
-import Work from '../components/Work.astro';
 import { profile } from '../data/profile';
 import Base from '../layouts/Base.astro';
 
@@ -35,12 +35,8 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
       {
         projects.length > 0 && (
-          <Section
-            id="work"
-            title="Selected work"
-            lead="What I did on each one and what changed after."
-          >
-            <Work projects={projects} />
+          <Section id="projects" title="Skill showcase">
+            <Projects projects={projects} />
           </Section>
         )
       }

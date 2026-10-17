@@ -213,16 +213,4 @@
     letter-spacing: 0;
     color: var(--green);
   }
-
-  .dot-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.8rem;
-
-    & li:not(:last-child)::after {
-      content: "·" / "";
-      margin-left: 0.8rem;
-      color: var(--muted);
-    }
-  }
 }
