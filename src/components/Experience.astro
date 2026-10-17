@@ -7,58 +7,94 @@ const earlier = profile.experience.filter((role) => role.earlier);
 const years = earlier.flatMap((role) => [role.from, role.to]).map((date) => Number(date.slice(-4)));
 ---
 
-<ol class="roles">
+<ol class="timeline">
   {current.map((role, i) => <Role role={role} latest={i === 0} />)}
 </ol>
 
-<details class="earlier">
-  <summary class="tap">Before front-end: {Math.min(...years)} to {Math.max(...years)}</summary>
-  <ol class="roles">
-    {earlier.map((role) => <Role role={role} />)}
-  </ol>
-</details>
+<div class="earlier">
+  <p class="label">Before front-end: {Math.min(...years)} to {Math.max(...years)}</p>
+  <ul class="grid">
+    {
+      earlier.map((role) => (
+        <li class="old">
+          <p class="when">
+            {role.from} &ndash; {role.to}
+          </p>
+          <h3>{role.title}</h3>
+          <p class="where">
+            {role.company} · {role.place}
+          </p>
+          <ul class="ticks">
+            {role.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</div>
 
 <style>
-  .roles {
+  .timeline {
+    --gap: clamp(1.5rem, 3vw, 2.5rem);
+
     display: flex;
     flex-direction: column;
-    gap: clamp(2rem, 4vw, 3rem);
+    gap: var(--gap);
   }
 
   .earlier {
-    margin-top: clamp(2rem, 4vw, 3rem);
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+
+    .label {
+      font-size: var(--step--2);
+      color: var(--forest-muted);
+    }
   }
 
-  summary {
-    gap: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--green);
-    list-style: none;
-    width: fit-content;
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
-  summary::-webkit-details-marker {
-    display: none;
+  .old {
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    border: 1px solid rgb(255 255 255 / 0.07);
+    border-radius: var(--radius-card);
+    transition: border-color var(--motion) ease;
+
+    &:hover {
+      border-color: rgb(74 222 128 / 0.45);
+    }
   }
 
-  summary::before {
-    content: '';
-    width: 0.45rem;
-    height: 0.45rem;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    rotate: -45deg;
-    translate: 0 -1px;
-    transition: rotate var(--motion) ease;
+  .when {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--forest-muted);
   }
 
-  details[open] summary::before {
-    rotate: 45deg;
-    translate: 0 -2px;
+  h3 {
+    margin-top: 0.75rem;
+    font-size: var(--step-1);
+    color: var(--forest-ink);
   }
 
-  details[open] summary {
-    margin-bottom: 1.5rem;
+  .where {
+    margin-top: 0.25rem;
+    font-size: var(--step--1);
+  }
+
+  .ticks {
+    margin-top: 1rem;
   }
 </style>

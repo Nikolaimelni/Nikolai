@@ -9,20 +9,24 @@ type Props = {
 const { role, latest = false } = Astro.props;
 ---
 
-<li class:list={['role', { latest }]}>
-  <div class="when">
-    <span class="years">
-      {role.from}&ndash;{role.to}
-    </span>
-    <span class="kind">{role.kind}</span>
-  </div>
+<li class="role">
+  <p class="when">{role.from} &ndash; {role.to}</p>
+  <span class="rail" aria-hidden="true"></span>
 
-  <div class="what">
-    <h3>
-      {role.title}, {role.company}
-    </h3>
-    <p class="where">{role.place}</p>
-    <ul>
+  <div class="card">
+    <div class="top">
+      <div>
+        {latest && <p class="now">Current role</p>}
+        <h3>{role.title}</h3>
+        <p class="company">{role.company}</p>
+      </div>
+      <p class="meta">
+        <span class="kind">{role.kind}</span>
+        {role.place}
+      </p>
+    </div>
+
+    <ul class="ticks">
       {role.points.map((point) => (
         <li>{point}</li>
       ))}
@@ -32,58 +36,168 @@ const { role, latest = false } = Astro.props;
 
 <style>
   .role {
+    --dot: 1.6rem;
+
+    position: relative;
     display: grid;
-    gap: 0.75rem 2rem;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--rule);
+    grid-template-columns: 1rem minmax(0, 1fr);
+    grid-template-areas:
+      'rail when'
+      'rail card';
+    gap: 0.75rem;
 
     @media (width >= 52rem) {
-      grid-template-columns: 11rem minmax(0, 1fr);
+      --dot: 1.85rem;
+
+      grid-template-columns: 12rem 3rem minmax(0, 1fr);
+      grid-template-areas: 'when rail card';
+      column-gap: 1.5rem;
     }
   }
 
-  .latest {
-    border-left-color: var(--green);
-  }
-
   .when {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .years {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .kind,
-  .where {
+    grid-area: when;
+    padding-top: 0.75rem;
+    font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--forest-muted);
+    transition: color var(--motion) ease;
+
+    @media (width >= 52rem) {
+      padding-top: 1.3rem;
+    }
   }
 
-  .what {
+  .rail {
+    grid-area: rail;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: var(--dot);
+      left: 50%;
+      width: 0.75rem;
+      height: 0.75rem;
+      translate: -50% -50%;
+      z-index: 1;
+      border: 1.5px solid var(--forest-muted);
+      border-radius: 50%;
+      background: var(--forest);
+      transition:
+        background-color var(--motion) ease,
+        border-color var(--motion) ease,
+        box-shadow var(--motion) ease;
+    }
+  }
+
+  .role:not(:last-child) .rail::after {
+    content: '';
+    position: absolute;
+    top: var(--dot);
+    bottom: calc(-1 * (var(--gap) + var(--dot)));
+    left: 50%;
+    width: 1px;
+    background: rgb(255 255 255 / 0.18);
+  }
+
+  .card {
+    grid-area: card;
+    position: relative;
+    isolation: isolate;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid var(--forest-rule);
+    border-radius: var(--radius-card);
+    transition: border-color var(--motion) ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        rgb(74 222 128 / 0.26),
+        rgb(74 222 128 / 0.06) 60%,
+        rgb(255 255 255 / 0.02)
+      );
+      opacity: 0;
+      transition: opacity var(--motion) ease;
+    }
+  }
+
+  .role:hover {
+    .when {
+      color: var(--lime);
+    }
+
+    .rail::before {
+      background: var(--lime);
+      border-color: var(--lime);
+      box-shadow: 0 0 0 5px rgb(74 222 128 / 0.2);
+    }
+
+    .card {
+      border-color: rgb(74 222 128 / 0.55);
+    }
+
+    .card::before {
+      opacity: 1;
+    }
+  }
+
+  .top {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0.75rem 1.5rem;
   }
 
-  .what ul {
+  .now {
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    color: var(--forest-ink);
+  }
+
+  .company {
+    margin-top: 0.25rem;
+    font-weight: 500;
+    color: var(--lime);
+  }
+
+  .meta {
     display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    margin: 0.6rem 0 0;
-    padding-left: 1.1rem;
-    max-width: var(--measure);
-    list-style: disc;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--forest-muted);
+    white-space: nowrap;
   }
 
-  .what li {
-    color: var(--ink-soft);
+  .kind {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgb(255 255 255 / 0.22);
+    border-radius: 999px;
+    color: var(--forest-ink);
   }
 
-  .what li::marker {
-    color: var(--green);
+  .ticks {
+    margin-top: 1.25rem;
+    max-width: 80ch;
   }
 </style>
