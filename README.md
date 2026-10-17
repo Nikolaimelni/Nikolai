@@ -44,5 +44,9 @@ profile, run `pnpm og` to redraw the social card.
   the page. Astro also puts that tag at the end of `<head>`, so the font styles and
   the JSON-LD above it fall outside the policy. Both are static.
 - The six projects are placeholders until the real write-ups are ready.
+- The Download CV button points at `public/CV_Nikolai_Melnichenko.pdf`, which is
+  not in the repo yet, so the link is dead until the PDF goes in.
+- The social card and the favicon still use the old blue and green and Plus
+  Jakarta Sans. `pnpm og` has not been redone for the new design.
 - `pnpm og` pulls the font from Google Fonts when it runs, while the site itself
   serves its own copy.
