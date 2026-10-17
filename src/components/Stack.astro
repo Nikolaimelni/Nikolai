@@ -1,0 +1,18 @@
+---
+import { profile } from '../data/profile';
+---
+
+<div class="rows">
+  {
+    profile.skills.map((group, i) => (
+      <div class="row">
+        <h3 class="label">{group.label}</h3>
+        <ul class:list={['chips', { strong: i === 0 }]}>
+          {group.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>

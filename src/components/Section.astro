@@ -3,13 +3,13 @@ type Props = {
   id: string;
   title: string;
   lead?: string;
-  shaded?: boolean;
+  dark?: boolean;
 };
 
-const { id, title, lead, shaded = false } = Astro.props;
+const { id, title, lead, dark = false } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-title`} data-shaded={shaded ? '' : undefined}>
+<section id={id} aria-labelledby={`${id}-title`} data-dark={dark ? '' : undefined}>
   <div class="head">
     <h2 id={`${id}-title`}>{title}</h2>
     {lead && <p class="lead">{lead}</p>}
@@ -19,23 +19,14 @@ const { id, title, lead, shaded = false } = Astro.props;
 
 <style>
   section {
-    padding-block: var(--section-space);
-    border-top: 1px solid var(--rule);
-  }
-
-  /* Paints past the container without touching the layout inside it. */
-  section[data-shaded] {
-    border-top: none;
-    background: var(--surface);
-    box-shadow: 0 0 0 100vw var(--surface);
-    clip-path: inset(0 -100vw);
+    padding-block: calc(var(--section-space) / 2);
   }
 
   .head {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-    margin-bottom: clamp(2rem, 4vw, 3rem);
+    margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
   }
 
   .lead {
@@ -43,5 +34,36 @@ const { id, title, lead, shaded = false } = Astro.props;
     color: var(--muted);
     font-size: var(--step-1);
     line-height: 1.45;
+  }
+
+  section[data-dark] {
+    position: relative;
+    isolation: isolate;
+    margin-block: calc(var(--section-space) / 2);
+    padding-block: var(--section-space);
+    color: var(--forest-text);
+
+    & h2 {
+      color: var(--forest-ink);
+    }
+
+    & .lead {
+      color: var(--forest-muted);
+    }
+  }
+
+  /* Paints past the container without touching the layout inside it. */
+  section[data-dark]::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline: calc(50% - 50vw);
+    z-index: -1;
+    background: linear-gradient(
+      170deg,
+      var(--forest-glow),
+      var(--forest) 45%,
+      var(--forest-deep)
+    );
   }
 </style>

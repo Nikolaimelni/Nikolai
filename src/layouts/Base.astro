@@ -62,13 +62,15 @@ const jsonLd = JSON.stringify(person).replaceAll('<', '\\u003c');
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <meta name="theme-color" content="#fbfcfb" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0e1311" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1310" media="(prefers-color-scheme: dark)" />
 
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
 
-    <Font cssVariable="--font-jakarta" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-orbitron" preload={[{ weight: 700 }]} />
+    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-roboto-mono" />
 
     <script type="application/ld+json" set:html={jsonLd} is:inline />
   </head>
@@ -86,7 +88,7 @@ const jsonLd = JSON.stringify(person).replaceAll('<', '\\u003c');
         background: var(--surface);
         border: 1px solid var(--rule);
         border-radius: 0 0 6px 6px;
-        font-weight: 600;
+        font-weight: 500;
         transform: translateY(-110%);
         transition: transform var(--motion) ease;
 

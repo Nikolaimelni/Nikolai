@@ -1,72 +1,53 @@
 ---
 import { Image } from 'astro:assets';
-import photo from '../assets/portrait.jpg';
+import { existsSync, statSync } from 'node:fs';
+import photo from '../assets/portrait.webp';
 import { profile } from '../data/profile';
+import { withBase } from '../lib/url';
 
-const current = profile.experience.find((role) => role.to === 'Present');
-
-// CV download is off until there is a new PDF. To bring it back, put the file in
-// public/ and restore these lines and the link below:
-// import { statSync } from 'node:fs';
-// import { withBase } from '../lib/url';
-// const cvSize = Math.round(statSync(`public${profile.links.cv}`).size / 1024);
+const cvFile = `public${profile.links.cv}`;
+const cvSize = existsSync(cvFile) ? Math.round(statSync(cvFile).size / 1024) : null;
 ---
 
 <header class="hero">
   <div class="intro">
-    {
-      profile.available && (
-        <p class="status">
-          <span class="dot" aria-hidden="true" />
-          {profile.availability}
-        </p>
-      )
-    }
-
-    <h1>{profile.headline} <span class="accent">{profile.headlineAccent}</span></h1>
+    <h1>
+      <span class="name">I&rsquo;m <span class="accent">{profile.name}</span></span>
+      {profile.headline}
+    </h1>
 
     <p class="sub">{profile.subhead}</p>
 
     <div class="actions">
       <a class="btn primary" href="#contact">Get in touch</a>
       <a class="btn" href="#experience">See experience</a>
-      {/*
       <a class="btn" href={withBase(profile.links.cv)} download>
-        Download CV <span class="meta">PDF, {cvSize} KB</span>
+        Download CV {cvSize !== null && <span class="meta">PDF, {cvSize} KB</span>}
       </a>
-      */}
     </div>
   </div>
 
-  <div class="card">
-    <div class="portrait">
-      <Image src={photo} alt={profile.name} widths={[88, 176, 320, 370]} sizes="(min-width: 60rem) 10rem, 5.5rem" loading="eager" fetchpriority="high" />
-    </div>
-    <div>
-      <p class="name">{profile.name}</p>
-      <p class="role">{profile.role}</p>
-      <ul class="facts">
-        <li>{profile.location.city}, {profile.location.country}</li>
-        {current && <li>Now at {current.company}</li>}
-      </ul>
-      <ul class="links">
-        <li><a class="tap" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a class="tap" href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a class="tap" href={profile.links.telegram} target="_blank" rel="noopener noreferrer">Telegram</a></li>
-      </ul>
-    </div>
+  <div class="photo">
+    <Image
+      src={photo}
+      alt={profile.name}
+      widths={[240, 288, 480, 576]}
+      sizes="(min-width: 40rem) 18rem, 15rem"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 </header>
 
 <style>
   .hero {
     display: grid;
-    gap: 2.5rem clamp(3rem, 7vw, 6rem);
+    gap: 2.5rem clamp(3rem, 6vw, 6rem);
     align-items: center;
-    padding-block: clamp(2rem, 5vw, 4rem) var(--section-space);
+    padding-block: clamp(2.5rem, 5vw, 4rem) var(--section-space);
 
     @media (width >= 60rem) {
-      grid-template-columns: minmax(0, 1fr) 15.5rem;
+      grid-template-columns: minmax(0, 1fr) 18rem;
     }
   }
 
@@ -74,38 +55,10 @@ const current = profile.experience.find((role) => role.to === 'Present');
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 1.5rem;
   }
 
-  /* A pill only where the text fits on one line. */
-  .status {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 0.55rem;
-    font-size: var(--step--1);
-    font-weight: 600;
-    color: var(--ink-soft);
-
-    @media (width >= 30rem) {
-      padding: 0.35rem 0.85rem 0.35rem 0.7rem;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      background: var(--surface);
-    }
-  }
-
-  .dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-top: 0.5em;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--green) 18%, transparent);
-  }
-
-  h1 {
-    max-width: 17ch;
+  .name {
+    display: block;
   }
 
   .accent {
@@ -113,91 +66,48 @@ const current = profile.experience.find((role) => role.to === 'Present');
   }
 
   .sub {
-    max-width: 46ch;
+    margin-top: 1.25rem;
     color: var(--ink-soft);
-    font-size: var(--step-0);
-    line-height: 1.55;
-
-    @media (width >= 48rem) {
-      font-size: var(--step-1);
-      line-height: 1.45;
-    }
+    font-size: var(--step-1);
+    line-height: 1.45;
   }
 
   .actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 0.75rem;
-  }
-
-  .btn .meta {
-    font-weight: 400;
-    font-size: var(--step--1);
-    color: var(--muted);
-  }
-
-  .card {
-    display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    padding: 1rem;
-    border: 1px solid var(--rule);
-    border-radius: 1.25rem;
-    background: var(--surface);
-
-    @media (width >= 60rem) {
-      flex-direction: column;
-      gap: 1.1rem;
-      padding: 1.75rem 1rem 1.25rem;
-      text-align: center;
-    }
-  }
-
-  .portrait {
-    width: 5.5rem;
-    flex-shrink: 0;
-    border-radius: 50%;
-
-    @media (width >= 60rem) {
-      width: 10rem;
-    }
-  }
-
-  .portrait :global(img) {
     width: 100%;
-    height: auto;
-    border: 1px solid var(--rule);
-    border-radius: inherit;
-  }
+    margin-top: clamp(2rem, 5vw, 4.5rem);
 
-  .name {
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-  }
-
-  .role {
-    color: var(--green);
-    font-size: var(--step--1);
-    font-weight: 600;
-  }
-
-  .facts {
-    margin-top: 0.5rem;
-    color: var(--muted);
-    font-size: var(--step--1);
-    line-height: 1.5;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 0.75rem;
-    font-size: var(--step--1);
-    font-weight: 600;
-
-    @media (width >= 60rem) {
-      justify-content: center;
+    @media (width >= 30rem) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: auto;
     }
+  }
+
+  .meta {
+    font-family: var(--font);
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .photo {
+    width: 100%;
+    max-width: 15rem;
+    aspect-ratio: 380 / 490;
+    overflow: hidden;
+    background: var(--tint);
+
+    @media (width >= 40rem) {
+      max-width: 18rem;
+    }
+  }
+
+  .photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 </style>

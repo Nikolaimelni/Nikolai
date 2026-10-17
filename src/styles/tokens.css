@@ -1,40 +1,53 @@
 :root {
   color-scheme: light dark;
 
-  /* #00b945 is the brand green, but white text on it is 2.62:1. Text and buttons
-     use the deeper --green, and the --vivid pair only goes on the social card. */
-  --green: light-dark(#046a38, #39d98a);
-  --on-green: light-dark(#ffffff, #08130d);
-  --blue: light-dark(#1a1eb2, #8e92ff);
-  --vivid: #00b945;
-  --vivid-blue: #1a1eb2;
+  --green: light-dark(#1e7a3d, #4ade80);
+  --on-green: light-dark(#ffffff, #07140c);
 
-  --paper: light-dark(#fbfcfb, #0e1311);
-  --surface: light-dark(#ffffff, #151c19);
-  --ink: light-dark(#101714, #e9efeb);
+  --paper: light-dark(#fcfcfc, #0d1310);
+  --surface: light-dark(#ffffff, #141c18);
+  --ink: light-dark(#12231b, #e8efea);
   /* Body copy. --muted is for secondary text only. */
-  --ink-soft: light-dark(#2e3a35, #c2ccc7);
-  --muted: light-dark(#5a6660, #97a39e);
-  --rule: light-dark(#e2e7e4, #232b28);
-  /* Borders on fields and buttons. --rule is 1.22:1 and they need 3:1. */
-  --edge: light-dark(#848b87, #636f6a);
+  --ink-soft: light-dark(#3b413f, #c3cdc8);
+  --muted: light-dark(#5c6662, #98a5a0);
+  --rule: light-dark(#e6e6e6, #232c28);
+  --line: light-dark(#dedede, #2f3934);
+  --edge: light-dark(#848b87, #66726d);
   --error: light-dark(#b3261e, #f08a80);
+  --tint-faint: light-dark(#f4faf6, #16211b);
+  --tint: light-dark(#e9efeb, #1b2621);
+  --tint-strong: light-dark(#e0ede5, #183324);
+  --tint-edge: light-dark(#5c8b6b, #3d7a55);
 
-  --font: var(--font-jakarta);
+  --forest: light-dark(#1d4a36, #143726);
+  --forest-glow: light-dark(#275e41, #1c4732);
+  --forest-deep: light-dark(#174030, #0f281c);
+  --forest-ink: #f2f4f1;
+  --forest-text: rgb(255 255 255 / 0.8);
+  --forest-muted: #a3b8ae;
+  --forest-rule: rgb(255 255 255 / 0.1);
+  --lime: #4ade80;
 
+  --font-display: var(--font-orbitron);
+  --font: var(--font-inter);
+  --font-mono: var(--font-roboto-mono);
+
+  --step--2: 0.75rem;
   --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
-  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
-  --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
-  --step-4: clamp(2.1rem, 1.55rem + 3.2vw, 4.6rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+  --step-2: clamp(1.25rem, 1.12rem + 0.6vw, 1.625rem);
+  --step-3: clamp(1.6rem, 1.3rem + 1.4vw, 2.5rem);
+  --step-4: clamp(2rem, 1.2rem + 2.9vw, 3.5rem);
 
-  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --gutter: clamp(1rem, 4vw, 3rem);
   --measure: 62ch;
-  --column: 78rem;
-  --nav-height: 2.75rem;
+  --column: 76rem;
+  --nav-height: 4.5rem;
+  --radius: 8px;
+  --radius-card: 16px;
   /* Above and below every block on the page, so the gaps stay even. */
-  --section-space: clamp(3rem, 6vw, 4.5rem);
+  --section-space: clamp(3.5rem, 7vw, 6rem);
 
   --motion: 140ms;
 }

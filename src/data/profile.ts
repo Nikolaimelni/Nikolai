@@ -5,32 +5,32 @@ export const profile = {
   name: 'Nikolai Melnichenko',
   role: 'Front-End Developer',
   location: { city: 'Lisbon', country: 'Portugal', countryCode: 'PT' },
-  available: true,
-  availability: 'Open to on-site in Lisbon, hybrid or fully remote',
 
-  // \u2011 is a non-breaking hyphen, so no line ends on "front-" or "full-".
-  headline: 'I build React and TypeScript front\u2011ends',
-  headlineAccent: 'that stay easy to change',
-  subhead:
-    'Front-end developer in Lisbon with 5+ years in software development. React, Next.js and TypeScript in production, and more than a year of Angular with NgRx and SSR. Available for contracts and full\u2011time roles.',
+  // \u2011 is a non-breaking hyphen, so no line ends on "front-".
+  headline: 'Front\u2011end developer based in Lisbon',
+  subhead: 'I build React and TypeScript front\u2011ends that stay easy to change',
   // Meta description and link previews, where the subhead would get cut off.
   tagline: 'React, Next.js and TypeScript front-ends that stay easy to change.',
 
   focus: [
     {
       title: 'Shared UI',
+      icon: 'layers',
       text: 'Product screens built on the shared component library and its SCSS/BEM structure, which every app on the platform uses.',
     },
     {
       title: 'Payments',
+      icon: 'card',
       text: 'The payment system on a fintech product, and a third-party payment widget set up for each brand.',
     },
     {
       title: 'Performance',
+      icon: 'bolt',
       text: 'Code splitting, lazy loading and bundle analysis, plus Core Web Vitals work on Next.js.',
     },
     {
       title: 'Releases',
+      icon: 'branch',
       text: 'I run the release cycle for my team and wrote the branching and code-style rules it follows.',
     },
   ],
@@ -40,7 +40,8 @@ export const profile = {
     github: 'https://github.com/nikolaimelni',
     linkedin: 'https://www.linkedin.com/in/nikolai-melnichenko/',
     telegram: 'https://t.me/Nikolaimelni',
-    cv: '/CV_Nikolai_Melnichenko.pdf',
+    whatsapp: 'https://wa.me/351912078598',
+    cv: '/Nikolai_Melnichenko_CV.pdf',
     source: 'https://github.com/nikolaimelni/Nikolai',
     form: 'https://formspree.io/f/xyyrkzpq',
   },
@@ -173,7 +174,7 @@ export const profile = {
     },
     {
       label: 'Used daily, output always reviewed',
-      items: ['Claude Code', 'GitHub Copilot'],
+      items: ['Claude Code', 'GitHub Copilot', 'ChatGPT'],
     },
   ],
 

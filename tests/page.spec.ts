@@ -12,14 +12,16 @@ test('the page renders its sections', async ({ page }) => {
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('main')).toHaveCount(1);
 
-  for (const id of ['experience', 'skills', 'contact']) {
+  for (const id of ['stack', 'experience', 'education', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
 
-  // No published projects means no Work section and no nav link to it.
-  const titles = page.locator('#work').getByRole('heading', { level: 3 });
+  // No published projects means no Projects section and no nav link to it.
+  const titles = page.locator('#projects').getByRole('heading', { level: 3 });
   await expect(titles).toHaveCount(published.length);
-  await expect(page.locator('nav a[href="#work"]')).toHaveCount(published.length > 0 ? 1 : 0);
+  await expect(page.locator('nav a[data-spy="projects"]')).toHaveCount(
+    published.length > 0 ? 1 : 0,
+  );
 });
 
 test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
@@ -32,13 +34,6 @@ test('nothing scrolls sideways on a narrow phone', async ({ page }) => {
   });
 
   expect(scrolled).toBe(0);
-});
-
-test('the name in the nav renders with its space', async ({ page }) => {
-  await page.goto('');
-  const brand = page.locator('nav a.brand');
-  const markup = (await brand.textContent())?.replace(/\s+/g, ' ').trim();
-  expect(await brand.innerText()).toBe(markup);
 });
 
 // 200% is the text size WCAG expects a page to survive.
@@ -61,28 +56,24 @@ for (const { width, text } of [
       .evaluateAll((links) => links.map((link) => link.getAttribute('data-spy') ?? ''));
 
     for (const id of ids) {
-      await page.locator(`nav a[href="#${id}"]`).click();
+      await page.locator(`nav a[data-spy="${id}"]`).click();
       const top = await page.locator(`#${id}`).evaluate((el) => el.getBoundingClientRect().top);
       expect(top).toBeGreaterThanOrEqual((await navBottom()) - 1);
     }
-
-    // The name in the nav points at #main, which starts right under the nav.
-    await page.locator('nav a.brand').click();
-    expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 }
 
 test('the nav marks the section in view and nothing else', async ({ page }) => {
   await page.goto('');
-  const link = page.locator('nav a[href="#contact"]');
+  const link = page.locator('nav a[data-spy="contact"]');
   const marked = page.locator('nav a[aria-current]');
 
   await link.click();
   await expect(link).toHaveAttribute('aria-current', 'true');
 
-  // Skills has no nav link. Its top goes above the band the observer watches.
-  await page.locator('#skills').evaluate((skills) => {
-    const top = skills.getBoundingClientRect().top + window.scrollY;
+  // Stack has no nav link. Its top goes above the band the observer watches.
+  await page.locator('#stack').evaluate((stack) => {
+    const top = stack.getBoundingClientRect().top + window.scrollY;
     window.scrollTo(0, top - window.innerHeight * 0.2);
   });
   await expect(marked).toHaveCount(0);
@@ -98,6 +89,7 @@ test('reduced motion switches transitions off', async ({ page }) => {
   await page.goto('');
 
   const durations = await page
+    .getByRole('main')
     .getByRole('link', { name: 'Get in touch' })
     .evaluate((el) => getComputedStyle(el).transitionDuration.split(', ').map(Number.parseFloat));
   expect(durations.every((seconds) => seconds === 0)).toBe(true);

@@ -24,11 +24,27 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Plus Jakarta Sans',
-      cssVariable: '--font-jakarta',
-      weights: [400, 600, 800],
+      name: 'Orbitron',
+      cssVariable: '--font-orbitron',
+      weights: [500, 700],
       styles: ['normal'],
       fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      weights: [400, 500],
+      styles: ['normal'],
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Roboto Mono',
+      cssVariable: '--font-roboto-mono',
+      weights: [500],
+      styles: ['normal'],
+      fallbacks: ['ui-monospace', 'monospace'],
     },
   ],
 });
