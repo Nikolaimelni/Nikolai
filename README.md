@@ -46,7 +46,8 @@ profile, run `pnpm og` to redraw the social card.
 - The six projects are placeholders until the real write-ups are ready.
 - The Download CV button points at `public/CV_Nikolai_Melnichenko.pdf`, which is
   not in the repo yet, so the link is dead until the PDF goes in.
-- The social card and the favicon still use the old blue and green and Plus
-  Jakarta Sans. `pnpm og` has not been redone for the new design.
+- The social card still uses the old blue and green and Plus Jakarta Sans. The
+  favicon and touch icon are new, but the card half of `pnpm og` has not been
+  redone for the new design, so running it redraws the old card.
 - `pnpm og` pulls the font from Google Fonts when it runs, while the site itself
   serves its own copy.

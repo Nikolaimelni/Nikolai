@@ -81,7 +81,7 @@ await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: 'public/og.png' });
 await browser.close();
 
-const background = '<rect width="512" height="512" rx="96" fill="#fbfcfb"/>';
+const background = '<rect width="512" height="512" fill="#174030"/>';
 const icon = favicon.replace(/<svg[^>]*>/, `$&${background}`);
 
 await writeFile(
