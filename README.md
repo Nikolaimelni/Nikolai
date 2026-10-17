@@ -43,7 +43,8 @@ profile, run `pnpm og` to redraw the social card.
   which cannot carry `frame-ancestors`, so nothing stops another site from framing
   the page. Astro also puts that tag at the end of `<head>`, so the font styles and
   the JSON-LD above it fall outside the policy. Both are static.
-- The six projects are placeholders until the real write-ups are ready.
+- The six projects are placeholders marked `draft: true`, so the Projects section
+  and its nav link are off until the real write-ups replace them.
 - The social card still uses the old blue and green and Plus Jakarta Sans. The
   favicon and touch icon are new, but the card half of `pnpm og` has not been
   redone for the new design, so running it redraws the old card.
