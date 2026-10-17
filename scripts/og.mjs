@@ -3,10 +3,12 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import sharp from 'sharp';
+import astroConfig from '../astro.config.mjs';
 import { profile } from '../src/data/profile.ts';
 
 const tokens = await readFile('src/styles/tokens.css', 'utf8');
 const favicon = await readFile('public/favicon.svg', 'utf8');
+const domain = new URL(astroConfig.site ?? '').host.replace(/^www\./, '');
 
 const escapeHtml = (text) => text.replace(/[&<>"]/g, (char) => `&#${char.charCodeAt(0)};`);
 
@@ -17,7 +19,7 @@ const card = `<!doctype html>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Orbitron:wght@700&family=Roboto+Mono:wght@500&display=swap"
     />
     <style>
       ${tokens}
@@ -27,47 +29,56 @@ const card = `<!doctype html>
         height: 630px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 22px;
-        padding: 0 104px;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        position: relative;
+        justify-content: space-between;
+        padding: 72px 88px 64px;
+        background: linear-gradient(160deg, var(--forest-glow), var(--forest) 50%, var(--forest-deep));
+        color: var(--forest-ink);
+        font-family: 'Inter', sans-serif;
         overflow: hidden;
       }
-      .edge {
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: 26px;
-        background: linear-gradient(0deg, var(--vivid), var(--vivid-blue));
+      .mark svg {
+        display: block;
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+        box-shadow: 0 0 0 1px rgb(255 255 255 / 0.14);
       }
-      .dots {
-        position: absolute;
-        top: 74px;
-        right: 78px;
-        width: 176px;
-        height: 176px;
-        background-image: radial-gradient(var(--vivid) 3px, transparent 3.2px);
-        background-size: 22px 22px;
-        opacity: 0.45;
+      h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 58px;
+        font-weight: 700;
+        line-height: 1.15;
+        text-wrap: balance;
       }
-      h1 { font-size: 86px; font-weight: 800; letter-spacing: -0.03em; }
-      .role { font-size: 44px; font-weight: 600; color: var(--green); }
-      p { font-size: 38px; color: var(--muted); max-width: 22ch; line-height: 1.3; text-wrap: balance; }
-      ul { display: flex; gap: 56px; list-style: none; padding: 0; margin-top: 14px; }
-      li { font-size: 30px; font-weight: 600; }
+      .name { display: block; color: var(--lime); }
+      p {
+        margin-top: 22px;
+        max-width: 34ch;
+        font-size: 30px;
+        line-height: 1.35;
+        text-wrap: balance;
+        color: var(--forest-text);
+      }
+      footer {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--forest-muted);
+      }
     </style>
   </head>
   <body>
-    <div class="edge"></div>
-    <div class="dots"></div>
-    <h1>${escapeHtml(profile.name)}</h1>
-    <div class="role">${escapeHtml(profile.role)}</div>
-    <p>${escapeHtml(profile.tagline)}</p>
-    <ul>
-      <li>${escapeHtml(`${profile.location.city}, ${profile.location.country}`)}</li>
-    </ul>
+    <div class="mark">${favicon.replace(/<\?xml[^>]*>\s*/, '')}</div>
+    <main>
+      <h1>
+        <span class="name">I&rsquo;m ${escapeHtml(profile.name)}</span>
+        ${escapeHtml(profile.headline)}
+      </h1>
+      <p>${escapeHtml(profile.subhead)}</p>
+    </main>
+    <footer>${escapeHtml(domain)}</footer>
   </body>
 </html>`;
 
