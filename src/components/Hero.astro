@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { existsSync, statSync } from 'node:fs';
-import photo from '../assets/portrait.jpg';
+import photo from '../assets/portrait.webp';
 import { profile } from '../data/profile';
 import { withBase } from '../lib/url';
 
@@ -28,7 +28,14 @@ const cvSize = existsSync(cvFile) ? Math.round(statSync(cvFile).size / 1024) : n
   </div>
 
   <div class="photo">
-    <Image src={photo} alt={profile.name} loading="eager" fetchpriority="high" />
+    <Image
+      src={photo}
+      alt={profile.name}
+      widths={[240, 288, 480, 576]}
+      sizes="(min-width: 40rem) 18rem, 15rem"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 </header>
 
@@ -89,17 +96,18 @@ const cvSize = existsSync(cvFile) ? Math.round(statSync(cvFile).size / 1024) : n
     width: 100%;
     max-width: 15rem;
     aspect-ratio: 380 / 490;
+    overflow: hidden;
+    background: var(--tint);
 
     @media (width >= 40rem) {
       max-width: 18rem;
     }
-    overflow: hidden;
-    background: var(--tint);
   }
 
   .photo :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
   }
 </style>

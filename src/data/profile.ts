@@ -41,7 +41,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/nikolai-melnichenko/',
     telegram: 'https://t.me/Nikolaimelni',
     whatsapp: 'https://wa.me/351912078598',
-    cv: '/CV_Nikolai_Melnichenko.pdf',
+    cv: '/Nikolai_Melnichenko_CV.pdf',
     source: 'https://github.com/nikolaimelni/Nikolai',
     form: 'https://formspree.io/f/xyyrkzpq',
   },
